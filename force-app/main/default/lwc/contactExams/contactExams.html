@@ -1,0 +1,59 @@
+<template>
+    <div class="slds-card_boundary slds-card">
+<lightning-card title="Contact Related Exams">
+    <div class="slds-text-heading_small slds-float_right">
+        <p class="slds-text-align_right slds-text-weight_bold">Avg Score: {averageScore}</p>
+    </div>
+    <br>
+    <br>
+    <table class="slds-table slds-table_bordered">
+        <thead>
+            <tr>
+                <th>Exam Name</th>
+                <th>Datetime of Exam</th>
+                <th>Total Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <template for:each={exams} for:item="exam">
+                <tr key={exam.Id}>
+                    <td>
+                            <lightning-button-icon icon-name="utility:down" 
+                                                    variant="bare" 
+                                                    size="large" 
+                                                    onclick={handleToggleQuestions} 
+                                                    data-exam-id={exam.Id} 
+                                                    alternative-text="Expand/Collapse">
+                            </lightning-button-icon>
+                            <span>{exam.Name}</span>
+                        <template if:true={exam.expanded}>
+                            <div class="questions-container">
+                                <table class="slds-table slds-table_bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Question Name</th>
+                                            <th>Score</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template for:each={exam.Questions__r} for:item="question">
+                                            <tr key={question.Id} class="question-row">
+                                                <td>{question.Name}</td>
+                                                <td>{question.Score__c}</td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </template>
+                    </td>
+                    <td>{exam.Datetime_of_Exam__c}</td>
+                    <td>{exam.TotalScore__c}</td>
+                </tr>
+            </template>
+        </tbody>
+    </table>
+    <lightning-button label="View All Exams with Questions" onclick={handleViewAll}></lightning-button>
+</lightning-card>
+</div>
+</template>
