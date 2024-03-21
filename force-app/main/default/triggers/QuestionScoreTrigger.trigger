@@ -4,7 +4,7 @@ trigger QuestionScoreTrigger on Question__c (after insert, after update) {
     for (Question__c question : Trigger.new) {
         examIds.add(question.Exam__c);
     }
-
+ 
     // Fetch existing Total Scores for affected Exams
     Map<Id, Exam__c> examsToUpdate = new Map<Id, Exam__c>([
         SELECT Id, TotalScore__c, (SELECT Id, Score__c FROM Questions__r) 

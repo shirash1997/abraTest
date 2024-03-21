@@ -5,7 +5,7 @@ private class QuestionScoreTest {
         // Create Exam
         Exam__c exam = new Exam__c(Name = 'Test Exam');
         insert exam;
-
+ 
         // Create Questions for the Exam
         Question__c question1 = new Question__c(Exam__c = exam.Id, Score__c = 10);
         Question__c question2 = new Question__c(Exam__c = exam.Id, Score__c = 20);
