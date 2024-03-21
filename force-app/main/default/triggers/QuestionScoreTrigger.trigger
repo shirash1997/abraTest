@@ -3,10 +3,11 @@ trigger QuestionScoreTrigger on Question__c (after insert, after update) {
         List<Question__c> questionsToUpdate = new List<Question__c>();
         
         for (Question__c newQuestion : Trigger.new) {
-            if ((Trigger.isInsert) ||
+            if ((Trigger.isInsert && newQuestion.Score__c != null) ||
                 (Trigger.oldMap != null && Trigger.oldMap.containsKey(newQuestion.Id) &&
-                 (Trigger.oldMap.get(newQuestion.Id).Score__c != newQuestion.Score__c ||
-                  Trigger.oldMap.get(newQuestion.Id).Exam__c != newQuestion.Exam__c))) {
+                 (newQuestion.Score__c != null && 
+                  (Trigger.oldMap.get(newQuestion.Id).Score__c != newQuestion.Score__c ||
+                   Trigger.oldMap.get(newQuestion.Id).Exam__c != newQuestion.Exam__c)))) {
                 questionsToUpdate.add(newQuestion);
             }
         }
