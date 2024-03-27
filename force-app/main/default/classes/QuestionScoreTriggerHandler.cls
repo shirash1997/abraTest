@@ -1,6 +1,5 @@
 public class QuestionScoreTriggerHandler {
-    
-    public static void handleQuestionScore(List<Question__c> newQuestions) {
+    public static void handleExamTotalScore(List<Question__c> newQuestions) {
         // Collect unique Exam IDs from new Questions
         Set<Id> examIds = new Set<Id>();
         for (Question__c question : newQuestions) {
@@ -14,13 +13,16 @@ public class QuestionScoreTriggerHandler {
             WHERE Id IN :examIds
         ]);
         
-                // Calculate and update TotalScore for each relevant Exam
-        for(Exam__c exam:examsToUpdate.values()){
+        // Calculate and update TotalScore for each relevant Exam
+        for (Question__c question : newQuestions) {
+            Exam__c exam = examsToUpdate.get(question.Exam__c);
+            if (exam != null) {
                 Decimal newTotalScore = calculateTotalScore(exam.Questions__r);
                 exam.TotalScore__c = newTotalScore;
                 examsToUpdate.put(exam.Id, exam);
+            }
         }
-    
+        
         // Update relevant Exams
         update examsToUpdate.values();
     }

@@ -1,4 +1,4 @@
-trigger QuestionScoreTrigger on Question__c (after insert, after update) {
+trigger questionScoreTrigger on Question__c (after insert, after update) {
     if (Trigger.isAfter && (Trigger.isInsert || Trigger.isUpdate)) {
         List<Question__c> questionsToUpdate = new List<Question__c>();
         Set<Id> examsChanged = new Set<Id>();
