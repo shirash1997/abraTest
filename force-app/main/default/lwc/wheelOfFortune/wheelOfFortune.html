@@ -1,0 +1,30 @@
+<template>
+    <div class="wheel-container">
+        <div class="pointer"></div>
+        <div class="wheel-wrapper">
+            <svg class="wheel" viewBox="0 0 500 500" style={wheelStyle}>
+                <circle cx="250" cy="250" r="240" fill="#FFD700" stroke="#DAA520" stroke-width="10"></circle>
+                <template for:each={segments} for:item="segment">
+                    <path key={segment.index} d={segment.d} fill={segment.color}></path>
+                    <text key={segment.keyText} x={segment.textX} y={segment.textY} 
+                        text-anchor="middle" dominant-baseline="middle" font-size="16px" fill="white"
+                        transform={segment.textTransform}>
+                        {segment.prize}
+                    </text>
+                </template>
+                <circle cx="250" cy="250" r="50" fill="#FFD700" stroke="#DAA520" stroke-width="5"></circle>
+                <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="24px" fill="black">
+                    🎡
+                </text>
+            </svg>
+        </div>
+        <button class="spin-button" onclick={spinWheel} disabled={isSpinning}>
+            {buttonLabel}
+        </button>
+        <template if:true={selectedPrize}>
+            <div class="result">
+                🎉!{selectedPrize} -זכית ב
+            </div>
+        </template>
+    </div>
+</template>

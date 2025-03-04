@@ -1,0 +1,11 @@
+<apex:page standardController="ContactData">
+    <apex:form>
+        <apex:pageBlock title"Contacts List" id="contacts_list">
+            <apex:pageBlockTable value="{!contacts}" var="ct">
+                <apex:column value="{!ct.Name}" />
+                <apex:column value="{!ct.Email}" />
+                <apex:column value="{!ct.Phone}" />
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

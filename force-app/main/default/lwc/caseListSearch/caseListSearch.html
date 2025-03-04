@@ -1,0 +1,21 @@
+<template>
+    <lightning-input type="search" label="Search" placeholder='please enter Case Subject' value={searchKey} onchange={handleSearch}></lightning-input>
+    <template if:true={filteredItems.length}>
+      
+            <div class="slds-grid slds-wrap">
+            <template for:each={filteredItems} for:item="item">
+              
+                <div key={item.Id} class="slds-col slds-size_1-of-1">
+                    <div class="slds-box slds-m-around_small tile">
+                        <p><strong>Case Number: </strong>{item.CaseNumber}</p> 
+                        <p><strong> Subject: </strong>{item.Subject} </p>
+                        <p><strong> Contact Id: </strong>{item.ContactId}</p>
+                    </div>
+                </div>
+            </template>
+            </div>
+    </template>
+    <template if:false={filteredItems.length}>
+        <p>No Result Found.</p>
+    </template>
+</template>
