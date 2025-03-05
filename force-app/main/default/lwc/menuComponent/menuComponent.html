@@ -1,0 +1,16 @@
+<template>
+    <section class="menu-container">
+        <h2>תפריט</h2>
+        <div class="menu-item" for:each={menuItems} for:item="item" key={item.id}>
+            <div class="item">
+                <img src={item.image} alt={item.name} class="item-image"/>
+                <div class="item-details">
+                    <h3>{item.name}</h3>
+                    <p>{item.description}</p>
+                    <p><strong>{item.price} ש"ח</strong></p>
+                    <button data-id={item.id} onclick={addToCart}>הוסף לעגלה</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</template>

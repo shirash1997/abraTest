@@ -1,29 +1,37 @@
 <template>
     <div class="wheel-container">
+        <!-- מחט (שומרת על מיקום קבוע) -->
         <div class="pointer"></div>
+
+        <!-- גלגל המזל -->
         <div class="wheel-wrapper">
-            <svg class="wheel" viewBox="0 0 500 500" style={wheelStyle}>
-                <circle cx="250" cy="250" r="240" fill="#FFD700" stroke="#DAA520" stroke-width="10"></circle>
+            <svg class="wheel" viewBox="0 0 500 500" style="transform: rotate(0deg);">
                 <template for:each={segments} for:item="segment">
-                    <path key={segment.index} d={segment.d} fill={segment.color}></path>
-                    <text key={segment.keyText} x={segment.textX} y={segment.textY} 
+                    <path key={segment.index} d={segment.d} fill={segment.color} stroke="white" stroke-width="2"></path>
+                    <text key={segment.index} x={segment.textX} y={segment.textY} 
                         text-anchor="middle" dominant-baseline="middle" font-size="16px" fill="white"
                         transform={segment.textTransform}>
                         {segment.prize}
                     </text>
                 </template>
+
+                <!-- עיגול מרכזי של הגלגל -->
                 <circle cx="250" cy="250" r="50" fill="#FFD700" stroke="#DAA520" stroke-width="5"></circle>
                 <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="24px" fill="black">
                     🎡
                 </text>
             </svg>
         </div>
+
+        <!-- כפתור סיבוב -->
         <button class="spin-button" onclick={spinWheel} disabled={isSpinning}>
             {buttonLabel}
         </button>
-        <template if:true={selectedPrize}>
+
+        <!-- הצגת התוצאה -->
+        <template if:false={dontShowWinning}>
             <div class="result">
-                🎉!{selectedPrize} -זכית ב
+                🎉! {selectedPrize} - זכית ב
             </div>
         </template>
     </div>

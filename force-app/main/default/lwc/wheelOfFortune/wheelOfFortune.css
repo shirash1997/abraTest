@@ -10,25 +10,32 @@
     position: relative;
     width: 300px;
     height: 300px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    overflow: hidden; /* ✅ מונע חיתוכים מחוץ למסגרת */
 }
 
 .wheel {
     width: 100%;
     height: 100%;
     transform-origin: center;
+    transition: transform 5s cubic-bezier(0.17, 0.67, 0.83, 0.9);
 }
+
 .pointer {
     position: absolute;
-    top: -15px; /* ✅ מיקום נכון שיצמד לגלגל */
+    top: -20px; /* שומר על מיקום המחט מעל הגלגל */
     left: 50%;
-    transform: translateX(-50%) rotate(180deg) scaleY(-1); /* ✅ הופך אופקית */
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(to bottom, #cc0000, #ff4444); /* ✅ גרדיאנט אדום לתלת-מימד */
-    clip-path: polygon(50% 100%, 0% 0%, 100% 0%); /* ✅ הפיכת המשולש */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* ✅ מוסיף עומק למחט */
+    transform: translateX(-50%) rotate(0deg); /* ✅ מסובב חזרה לכיוון הנכון */
+    transform-origin: center bottom;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(to bottom, #cc0000, #ff4444);
+    clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
     z-index: 10;
 }
+
 
 .spin-button {
     background-color: #2196f3;
@@ -38,19 +45,21 @@
     cursor: pointer;
     font-size: 16px;
     border-radius: 5px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.1s ease-in-out, background-color 0.3s;
 }
 
-.spin-button:disabled {
-    background-color: gray;
-    cursor: not-allowed;
+.spin-button:hover {
+    background-color: #1976d2;
+    transform: scale(1.05); /* ✅ אפקט אינטראקטיבי */
+}
+
+.spin-button:active {
+    transform: scale(0.95);
 }
 
 .result {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
-
-circle {
-    filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.5)); /* ✅ אפקט תלת-ממד לפינים */
-}
-
