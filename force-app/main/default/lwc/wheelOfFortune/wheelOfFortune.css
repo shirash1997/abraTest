@@ -38,8 +38,8 @@
 
 
 .spin-button {
-    background-color: #2196f3;
-    color: white;
+    background-color: #A67B5B;
+    color: #fff5e1;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
@@ -50,11 +50,12 @@
 }
 
 .spin-button:hover {
-    background-color: #1976d2;
+    background-color: #8B4513;
     transform: scale(1.05); /* ✅ אפקט אינטראקטיבי */
 }
 
 .spin-button:active {
+    background-color: #5C3A21;
     transform: scale(0.95);
 }
 
@@ -62,4 +63,6 @@
     font-size: 22px;
     font-weight: bold;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    color: #5C3A21; /* חום כהה */
+    background-color: #F5DEB3; /* קרם */
 }

@@ -14,7 +14,7 @@ export default class WheelOfFortune extends LightningElement {
         "Einstein AI", "Flow Master", "Admin Hero", "LWC Rockstar"
     ];
 
-    colors = ["#FF5733", "#33FF57", "#5733FF", "#FF33A1", "#33FFF5", "#F5FF33", "#A133FF", "#FF8C33"];
+    colors = ["#D2B48C", "#8B4513", "#A67B5B", "#F5DEB3", "#CD853F", "#DEB887", "#C19A6B", "#B8860B"];
 
     connectedCallback() {
         console.log("🔍 Loading Confetti Script...");

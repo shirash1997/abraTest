@@ -1,4 +1,6 @@
 /* עיצוב התפריט */
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+
 .header {
     background-color:antiquewhite;/* צבע רקע כהה */
     padding: 1rem 2rem;
@@ -28,8 +30,17 @@
     transition: background-color 0.3s;
 }
 
+
+body {
+    font-family: "Amatic SC", sans-serif;
+}
+
 .nav-link:hover {
     background-color: #ff7b00; /* צבע רקע כתום בהעלאת עכבר */
+}
+
+a.nav-link{
+    font-size: xxx-large;
 }
 
 video#bg-video-58 {
@@ -45,4 +56,69 @@ video#bg-video-58 {
 
 video{
     width:-webkit-fill-available;
+}
+
+/* תוכן מעל הווידאו */
+.content {
+    position: absolute;
+    z-index: 1;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: "Arial", sans-serif;
+    padding: 20px;
+    position-area: center;
+    margin-bottom: 30%;
+}
+
+/* כותרת */
+.cafe-title {
+    font-size:5rem;
+    font-weight: bold;
+    color:antiquewhite;
+    font-family: "Amatic SC", sans-serif; /* הפונט הרצוי */
+
+}
+
+.wheels-container{
+    padding: inherit;
+    border-top: inset;
+}
+
+/* תת-כותרת */
+.cafe-subtitle {
+    font-size: 2rem;
+    margin-top: 20px;
+    color:antiquewhite;
+    font-family: "Amatic SC", sans-serif; 
+    position-area: center;/* הפונט הרצוי */
+    z-index: 1;
+    justify-self: center;
+    padding: inherit;
+
+}
+
+/* רספונסיביות - מסכים קטנים (מובייל) */
+@media (max-width: 768px) {
+    .cafe-title {
+        font-size: 2rem; /* כותרת קטנה יותר */
+    }
+
+    .cafe-subtitle {
+        font-size: 1rem; /* טקסט קטן יותר */
+    }
+
+    .content {
+        padding: 10px; /* פחות שוליים */
+    }
+}
+
+/* רספונסיביות - מסכים מאוד קטנים (מובייל קטן) */
+@media (max-width: 480px) {
+    .cafe-title {
+        font-size: 1.8rem;
+    }
+
+    .cafe-subtitle {
+        font-size: 0.9rem;
+    }
 }
