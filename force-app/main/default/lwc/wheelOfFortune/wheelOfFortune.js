@@ -10,9 +10,16 @@ export default class WheelOfFortune extends LightningElement {
     @track confettiInitialized = false;
     @track dontShowWinning = false;
     prizes = [
-        "AGENT FORCE", "Lightning Component", "Salesforce MVP", "Trailhead Champion", 
-        "Einstein AI", "Flow Master", "Admin Hero", "LWC Rockstar"
+        "☕ Espresso Brooklyn", 
+        "🍂 Central Park Latte", 
+        "🎷 Harlem Mocha", 
+        "🌉 Soho Flat White", 
+        "🏙️ Manhattan Macchiato", 
+        "🍪 Broadway Caramel Frappe", 
+        "🎭 Times Square Americano", 
+        "🌆 Night Owl Ristretto"
     ];
+    
 
     colors = ["#D2B48C", "#8B4513", "#A67B5B", "#F5DEB3", "#CD853F", "#DEB887", "#C19A6B", "#B8860B"];
 
@@ -63,8 +70,8 @@ export default class WheelOfFortune extends LightningElement {
     get segments() {
         const numSegments = this.prizes.length;
         const anglePerPrize = 360 / numSegments;
-        const radius = 240;
-        const center = 250;
+        const radius = 290;
+        const center = 300;
         let segments = [];
     
         this.prizes.forEach((prize, index) => {
@@ -79,7 +86,8 @@ export default class WheelOfFortune extends LightningElement {
     
             const pathData = `M ${center} ${center} L ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2} Z`;
     
-            const textRadius = radius * 0.7;
+            const textRadius = radius * 0.8;
+            const textFontSize = 18;
             const textAngle = startAngle + anglePerPrize / 2;
             const textX = center + textRadius * Math.cos((Math.PI / 180) * textAngle);
             const textY = center + textRadius * Math.sin((Math.PI / 180) * textAngle);
