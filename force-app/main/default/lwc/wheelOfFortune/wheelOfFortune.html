@@ -5,11 +5,11 @@
 
         <!-- גלגל המזל -->
         <div class="wheel-wrapper">
-            <svg class="wheel" viewBox="0 0 600 600" style="transform: rotate(0deg);">
+            <svg class="wheel" viewBox="0 0 900 900" style="transform: rotate(0deg);">
                 <template for:each={segments} for:item="segment">
                     <path key={segment.index} d={segment.d} fill={segment.color}  stroke="white" stroke-width="2"></path>
                     <text key={segment.keyText} x={segment.textX} y={segment.textY} 
-                    text-anchor="middle" dominant-baseline="middle" font-size="2rem" fill="white"
+                    text-anchor="middle" dominant-baseline="middle" font-size="2.5rem" fill="white"
                     transform={segment.textTransform}>
                     {segment.prize}
                 </text>
@@ -31,7 +31,7 @@
         <!-- הצגת התוצאה -->
         <template if:false={dontShowWinning}>
             <div class="result">
-                🎉! {selectedPrize} - זכית ב
+                🎉{selectedPrize} - זכית ב
             </div>
         </template>
     </div>

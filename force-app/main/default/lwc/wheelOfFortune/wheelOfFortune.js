@@ -70,8 +70,8 @@ export default class WheelOfFortune extends LightningElement {
     get segments() {
         const numSegments = this.prizes.length;
         const anglePerPrize = 360 / numSegments;
-        const radius = 290;
-        const center = 300;
+        const radius = 420;
+        const center = 450;
         let segments = [];
     
         this.prizes.forEach((prize, index) => {
@@ -86,7 +86,7 @@ export default class WheelOfFortune extends LightningElement {
     
             const pathData = `M ${center} ${center} L ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2} Z`;
     
-            const textRadius = radius * 0.8;
+            const textRadius = radius * 0.6;
             const textFontSize = 18;
             const textAngle = startAngle + anglePerPrize / 2;
             const textX = center + textRadius * Math.cos((Math.PI / 180) * textAngle);
