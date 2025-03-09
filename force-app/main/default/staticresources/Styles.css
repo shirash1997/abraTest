@@ -1,6 +1,98 @@
 /* עיצוב התפריט */
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
 
+.site-wrapper {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+@media (min-width: 700px) {
+    .site-wrapper {
+        max-width: 768px;
+    }
+    video{
+        width:-webkit-fill-available;
+    }
+
+    .cafe-title {
+        font-size: 4rem !important;
+    }
+
+    .cafe-subtitle {
+        font-size: 2rem !important;
+    }
+
+    .content {
+        padding: 10px   !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .site-wrapper {
+        max-width: 1024px;
+    }
+    video{
+        width:-webkit-fill-available;
+    }
+
+    .cafe-title {
+        font-size: 4rem !important;
+    }
+
+    .cafe-subtitle {
+        font-size: 2rem !important;
+    }
+
+    .content {
+        padding: 10px   !important;
+    }
+}
+
+
+@media (min-width: 1024px) {
+    .site-wrapper {
+        max-width: 1200px;
+    }
+    video{
+        width:-webkit-fill-available;
+    }
+
+    .cafe-title {
+        font-size: 4rem !important;
+    }
+
+    .cafe-subtitle {
+        font-size: 2rem !important;
+    }
+
+    .content {
+        padding: 10px   !important;
+    }
+}
+
+@media (min-width: 1440px) {
+    .site-wrapper {
+        max-width: 800px; 
+        margin: 0 auto;   
+    }
+    video{
+        width:-webkit-fill-available;
+    }
+
+    .cafe-title {
+        font-size: 4rem !important;
+    }
+
+    .cafe-subtitle {
+        font-size: 2rem !important;
+    }
+
+    .content {
+        padding: 10px   !important;
+    }
+}
+
 .header {
     background-color:#EFEDD8;/* צבע רקע כהה */
     padding: 1rem 2rem;
@@ -44,20 +136,18 @@ a.nav-link{
     font-size: xxx-large;
 }
 
-video#bg-video-58 {
+/* video#bg-video-58 {
     width: -webkit-fill-available !important;
     
-}
+} */
 
-@media only screen and (max-width: 47.9375em) {
+/* @media only screen and (max-width: 47.9375em) {
     .lwc-6j9an5vbrcd-host.comm-section-container {
         padding:unset;
     }
 }
+ */
 
-video{
-    width:-webkit-fill-available;
-}
 
 /* תוכן מעל הווידאו */
 .content {
@@ -98,58 +188,7 @@ video{
 
 }
 
-/* רספונסיביות - מסכים קטנים (מובייל) */
-@media (max-width: 1024px) {
-    .cafe-title {
-        font-size: 2rem; /* כותרת קטנה יותר */
-    }
-
-    .header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .cafe-subtitle {
-        font-size: 1rem; /* טקסט קטן יותר */
-    }
-
-    .content {
-        padding: 10px; /* פחות שוליים */
-    }
-}
-
-/* רספונסיביות - מסכים מאוד קטנים (מובייל קטן) */
-@media (max-width: 768px) {
-    .cafe-title {
-        font-size: 1.8rem;
-    }
-
-    .cafe-subtitle {
-        font-size: 0.9rem;
-    }
-    .header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .cafe-title {
-        font-size: 1.8rem;
-    }
-
-    .cafe-subtitle {
-        font-size: 1rem;
-    }
-
-    .content {
-        padding: 10px;
-    }
-}
-
 .logo-container {
-    text-align: -webkit-right;
+    text-align: -webkit-right !important;
 
 }

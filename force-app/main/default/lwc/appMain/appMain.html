@@ -1,0 +1,17 @@
+<template>
+    <div class="site-wrapper">
+        <c-menu-component></c-menu-component> 
+        <div class="page-container">
+            <template if:true={isHomePage}>
+                <c-video-background></c-video-background>
+            </template>
+            <template if:true={isMenuPage}>
+               
+            </template>
+            <template if:true={isCartPage}>
+              
+            </template>
+        </div>
+
+    </div>
+</template>
