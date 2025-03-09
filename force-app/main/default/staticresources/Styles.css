@@ -11,6 +11,7 @@
 .nav {
     display: flex;
     justify-content: center;
+    margin-left: 200px;
 }
 
 .nav ul {
@@ -98,9 +99,15 @@ video{
 }
 
 /* רספונסיביות - מסכים קטנים (מובייל) */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .cafe-title {
         font-size: 2rem; /* כותרת קטנה יותר */
+    }
+
+    .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .cafe-subtitle {
@@ -113,7 +120,7 @@ video{
 }
 
 /* רספונסיביות - מסכים מאוד קטנים (מובייל קטן) */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .cafe-title {
         font-size: 1.8rem;
     }
@@ -121,5 +128,28 @@ video{
     .cafe-subtitle {
         font-size: 0.9rem;
     }
+    .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
+@media (max-width: 480px) {
+    .cafe-title {
+        font-size: 1.8rem;
+    }
+
+    .cafe-subtitle {
+        font-size: 1rem;
+    }
+
+    .content {
+        padding: 10px;
+    }
+}
+
+.logo-container {
+    text-align: -webkit-right;
+
+}
