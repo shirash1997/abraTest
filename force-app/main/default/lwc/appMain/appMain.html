@@ -1,17 +1,16 @@
 <template>
     <div class="site-wrapper">
-        <c-menu-component></c-menu-component> 
+        <!-- אזור תפריט + לוגו -->
+        <div class="menu-header">
+            <c-menu-component></c-menu-component>
+            <c-midnight-brew-logo></c-midnight-brew-logo> <!-- הוספת הלוגו -->
+        </div>
+
+        <!-- תוכן עמודים -->
         <div class="page-container">
             <template if:true={isHomePage}>
                 <c-video-background></c-video-background>
             </template>
-            <template if:true={isMenuPage}>
-               
-            </template>
-            <template if:true={isCartPage}>
-              
-            </template>
         </div>
-
     </div>
 </template>

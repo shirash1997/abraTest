@@ -26,6 +26,22 @@
     .content {
         padding: 10px   !important;
     }
+
+    .header{
+
+    }
+    .logo-container{
+
+    }
+    .menu-header {
+    }
+    .video-container{
+        max-width: 768px;   
+     }
+     .nav {
+        display: flex;
+        justify-content: center;
+    }
 }
 
 @media (min-width: 768px) {
@@ -47,6 +63,23 @@
     .content {
         padding: 10px   !important;
     }
+
+    .header{
+        
+    }
+    .logo-container{
+
+    }
+    .menu-header {
+    }
+    .video-container{
+        max-width: 1024px;
+        width:-webkit-fill-available;
+    }
+    .nav {
+        display: flex;
+        justify-content: center;
+    }
 }
 
 
@@ -55,7 +88,7 @@
         max-width: 1200px;
     }
     video{
-        width:-webkit-fill-available;
+        width:300%;
     }
 
     .cafe-title {
@@ -69,11 +102,32 @@
     .content {
         padding: 10px   !important;
     }
+
+    .header{
+        
+    }
+
+    .logo-container{
+
+    }
+
+    .menu-header {
+    }
+
+    .video-container{
+        min-width: -webkit-fill-available;  
+      }
+
+    .nav {
+        display: flex;
+        justify-content: center;
+    }
 }
+
 
 @media (min-width: 1440px) {
     .site-wrapper {
-        max-width: 800px; 
+        max-width: 1800px; 
         margin: 0 auto;   
     }
     video{
@@ -91,6 +145,39 @@
     .content {
         padding: 10px   !important;
     }
+
+    .header{
+        
+    }
+    .logo-container{
+
+    }
+    .menu-header {
+    }
+    .video-container{
+        min-width: -webkit-fill-available;
+    }
+}
+
+.menu-header {
+    display: flex;
+    align-items: center;
+    background-color: #EFEDD8; /* צבע רקע של הניווט */
+    padding: 10px 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+/* סגנון הלוגו */
+.logo-container {    
+    width: 60px; /* גודל מותאם ללוגו */
+    height: auto;
+}
+
+.logo {
+    width: 100%;
+    height: auto;
 }
 
 .header {
@@ -103,7 +190,6 @@
 .nav {
     display: flex;
     justify-content: center;
-    margin-left: 200px;
 }
 
 .nav ul {
@@ -188,7 +274,3 @@ a.nav-link{
 
 }
 
-.logo-container {
-    text-align: -webkit-right !important;
-
-}
