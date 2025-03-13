@@ -7,11 +7,12 @@
 }
 
 video{
+    width:300%;
 }
 
 @media (min-width: 700px) {
     .site-wrapper {
-        max-width: 768px;
+
     }
     video{
         width:-webkit-fill-available;
@@ -43,6 +44,9 @@ video{
      .nav {
         display: flex;
         justify-content: center;
+    }
+    a.nav-link{
+        font-size: large;
     }
 }
 
@@ -81,6 +85,9 @@ video{
     .nav {
         display: flex;
         justify-content: center;
+    }
+    a.nav-link{
+        font-size: large;
     }
 }
 
@@ -124,6 +131,9 @@ video{
         display: flex;
         justify-content: center;
     }
+    a.nav-link{
+        font-size: large;
+    }
 }
 
 
@@ -145,7 +155,14 @@ video{
     }
 
     .content {
-        padding: 10px   !important;
+        position: absolute;
+        z-index: 1;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        font-family: "Arial", sans-serif;
+        padding: 20px;
+        position-area: center;
+        margin-bottom: auto;
     }
 
     .header{
@@ -159,6 +176,10 @@ video{
     .video-container{
         min-width: -webkit-fill-available;
     }
+    a.nav-link{
+        font-size: large;
+    }
+  
 }
 
 .menu-header {
@@ -221,7 +242,7 @@ body {
 }
 
 a.nav-link{
-    font-size: xxx-large;
+    font-size: large;
 }
 
 /* video#bg-video-58 {
@@ -246,16 +267,16 @@ a.nav-link{
     font-family: "Arial", sans-serif;
     padding: 20px;
     position-area: center;
-    margin-bottom: auto;
+    max-width: 300px;
 }
 
 /* כותרת */
 .cafe-title {
-    font-size:5rem;
+    font-size: 1.7rem;
     font-weight: bold;
-    color:#EFEDD8;
-    font-family: "Amatic SC", sans-serif; /* הפונט הרצוי */
-    margin-top: 200px;
+    color: #EFEDD8;
+    font-family: "Amatic SC", sans-serif;
+    justify-self: center;
 }
 
 .wheels-container{
@@ -265,7 +286,7 @@ a.nav-link{
 
 /* תת-כותרת */
 .cafe-subtitle {
-    font-size: 2rem;
+    font-size: 1rem;
     color:#EFEDD8;
     font-family: "Amatic SC", sans-serif; 
     position-area: center;/* הפונט הרצוי */
@@ -287,8 +308,6 @@ a.nav-link{
 
 .wheel-wrapper {
     position: relative;
-    width: 600px;
-    height: 600px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
     border-radius: 50%;
     overflow: hidden; /* ✅ מונע חיתוכים מחוץ למסגרת */
@@ -324,7 +343,7 @@ a.nav-link{
     padding: 10px 20px;
     border: none;
     cursor: pointer;
-    font-size: 2rem;
+    font-size: 1rem;
     border-radius: 5px;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
     transition: transform 0.1s ease-in-out, background-color 0.3s;
