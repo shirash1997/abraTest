@@ -3,11 +3,11 @@
 
 .site-wrapper {
     max-width: 1200px;
-    margin: auto;
-    padding: 20px;
+
 }
 
-
+video{
+}
 
 @media (min-width: 700px) {
     .site-wrapper {
@@ -130,10 +130,10 @@
 @media (min-width: 1440px) {
     .site-wrapper {
         max-width: 1800px; 
-        margin: 0 auto;   
+ 
     }
     video{
-        width:-webkit-fill-available;
+        width: 110%;
     }
 
     .cafe-title {
@@ -246,7 +246,7 @@ a.nav-link{
     font-family: "Arial", sans-serif;
     padding: 20px;
     position-area: center;
-
+    margin-bottom: auto;
 }
 
 /* כותרת */
@@ -255,7 +255,7 @@ a.nav-link{
     font-weight: bold;
     color:#EFEDD8;
     font-family: "Amatic SC", sans-serif; /* הפונט הרצוי */
-
+    margin-top: 200px;
 }
 
 .wheels-container{
@@ -266,7 +266,6 @@ a.nav-link{
 /* תת-כותרת */
 .cafe-subtitle {
     font-size: 2rem;
-    margin-top: 20px;
     color:#EFEDD8;
     font-family: "Amatic SC", sans-serif; 
     position-area: center;/* הפונט הרצוי */
