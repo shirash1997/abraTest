@@ -2,6 +2,9 @@ import { LightningElement, track } from 'lwc';
 import confettiScript from '@salesforce/resourceUrl/confetti';
 import applauseSFX from '@salesforce/resourceUrl/applause';
 import { loadScript } from 'lightning/platformResourceLoader';
+import Styles from '@salesforce/resourceUrl/Styles';
+
+
 
 export default class WheelOfFortune extends LightningElement {
     @track rotation=0;
@@ -24,6 +27,9 @@ export default class WheelOfFortune extends LightningElement {
     colors = ["#D2B48C", "#8B4513", "#A67B5B", "#F5DEB3", "#CD853F", "#DEB887", "#C19A6B", "#B8860B"];
 
     connectedCallback() {
+        connectedCallback(){
+            loadStyle(this, Styles);
+        }
         console.log("🔍 Loading Confetti Script...");
         loadScript(this, confettiScript)
             .then(() => {
