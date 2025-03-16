@@ -1,11 +1,10 @@
 <template>
-    <header class="header">
-        <nav class="nav">
-            <ul>
-                <li><a href="/" class="nav-link">דף הבית</a></li>
-                <li><a href="/menu" class="nav-link">תפריט</a></li>
-                <li><a href="/cart" class="nav-link">עגלה</a></li>
+    <div class="navbar">
+        <img src={logoUrl} alt="Logo" class="logo" onclick={navigateToHome} />
+            <ul class="nav-links">
+                <li onclick={navigateToHome}>דף הבית</a></li>
+                <li onclick={navigationMenu} class="nav-link">תפריט</a></li>
+                <li onclick={navigationCart} class="nav-link">עגלה</a></li>
             </ul>
-        </nav>
-    </header>
+    </div>
 </template>

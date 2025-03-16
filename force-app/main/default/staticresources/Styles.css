@@ -1,377 +1,103 @@
 /* עיצוב התפריט */
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
 
-.site-wrapper {
-    max-width: 1200px;
-
-}
-
-video{
-    width:300%;
-}
-
-@media (min-width: 700px) {
-    .site-wrapper {
-
-    }
-    video{
-        width:-webkit-fill-available;
-    }
-
-    .cafe-title {
-        font-size: 4rem !important;
-    }
-
-    .cafe-subtitle {
-        font-size: 2rem !important;
-    }
-
-    .content {
-        padding: 10px   !important;
-    }
-
-    .header{
-
-    }
-    .logo-container{
-
-    }
-    .menu-header {
-    }
-    .video-container{
-        max-width: 768px;   
-     }
-     .nav {
-        display: flex;
-        justify-content: center;
-    }
-    a.nav-link{
-        font-size: large;
-    }
-}
-
-@media (min-width: 768px) {
-    .site-wrapper {
-        max-width: 1024px;
-    }
-    video{
-        width:-webkit-fill-available;
-    }
-
-    .cafe-title {
-        font-size: 4rem !important;
-    }
-
-    .cafe-subtitle {
-        font-size: 2rem !important;
-    }
-
-    .content {
-        padding: 10px   !important;
-    }
-
-    .header{
-        
-    }
-    .logo-container{
-
-    }
-    .menu-header {
-    }
-    .video-container{
-        max-width: 1024px;
-        width:-webkit-fill-available;
-    }
-    .nav {
-        display: flex;
-        justify-content: center;
-    }
-    a.nav-link{
-        font-size: large;
-    }
-}
-
-
-@media (min-width: 1024px) {
-    .site-wrapper {
-        max-width: 1200px;
-    }
-    video{
-        width:300%;
-    }
-
-    .cafe-title {
-        font-size: 4rem !important;
-    }
-
-    .cafe-subtitle {
-        font-size: 2rem !important;
-    }
-
-    .content {
-        padding: 10px   !important;
-    }
-
-    .header{
-        
-    }
-
-    .logo-container{
-
-    }
-
-    .menu-header {
-    }
-
-    .video-container{
-        min-width: -webkit-fill-available;  
-      }
-
-    .nav {
-        display: flex;
-        justify-content: center;
-    }
-    a.nav-link{
-        font-size: large;
-    }
-}
-
-
-@media (min-width: 1440px) {
-    .site-wrapper {
-        max-width: 1800px; 
- 
-    }
-    video{
-        width: 110%;
-    }
-
-    .cafe-title {
-        font-size: 4rem !important;
-    }
-
-    .cafe-subtitle {
-        font-size: 2rem !important;
-    }
-
-    .content {
-        position: absolute;
-        z-index: 1;
-        color: white;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        font-family: "Arial", sans-serif;
-        padding: 20px;
-        position-area: center;
-        margin-bottom: auto;
-    }
-
-    .header{
-        
-    }
-    .logo-container{
-
-    }
-    .menu-header {
-    }
-    .video-container{
-        min-width: -webkit-fill-available;
-    }
-    a.nav-link{
-        font-size: large;
-    }
-  
-}
-
-.menu-header {
-    display: flex;
-    align-items: center;
-    background-color: #EFEDD8; /* צבע רקע של הניווט */
-    padding: 10px 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: row;
-}
-
-/* סגנון הלוגו */
-.logo-container {    
-    width: 60px; /* גודל מותאם ללוגו */
-    height: auto;
-}
-
-.logo {
-    width: 100%;
-    height: auto;
-}
-
-.header {
-    background-color:#EFEDD8;/* צבע רקע כהה */
-    padding: 1rem 2rem;
-    text-align: center;
-    direction: rtl;
-}
-
-.nav {
-    display: flex;
-    justify-content: center;
-}
-
-.nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 20px;
-}
-
-.nav-link {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-
-body {
-    font-family: "Amatic SC", sans-serif;
-}
-
-.nav-link:hover {
-    background-color: #ff7b00; /* צבע רקע כתום בהעלאת עכבר */
-}
-
-a.nav-link{
-    font-size: large;
-}
-
-/* video#bg-video-58 {
-    width: -webkit-fill-available !important;
-    
-} */
-
-/* @media only screen and (max-width: 47.9375em) {
-    .lwc-6j9an5vbrcd-host.comm-section-container {
-        padding:unset;
-    }
-}
- */
-
-
-/* תוכן מעל הווידאו */
-.content {
-    position: absolute;
-    z-index: 1;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    font-family: "Arial", sans-serif;
-    padding: 20px;
-    position-area: center;
-    max-width: 300px;
-}
-
-/* כותרת */
-.cafe-title {
-    font-size: 1.7rem;
-    font-weight: bold;
-    color: #EFEDD8;
-    font-family: "Amatic SC", sans-serif;
-    justify-self: center;
-}
-
-.wheels-container{
-    padding: inherit;
-    border-top: inset;
-}
-
-/* תת-כותרת */
-.cafe-subtitle {
-    font-size: 1rem;
-    color:#EFEDD8;
-    font-family: "Amatic SC", sans-serif; 
-    position-area: center;/* הפונט הרצוי */
-    z-index: 1;
-    justify-self: center;
-    padding: inherit;
-
-}
-
-/* Font import moved to HTML file */
-
-.wheel-container {
+.home-container {
     position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+c-background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* כדי שהווידאו יהיה ברקע */
+}
+
+
+.content-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 2; /* כדי שהתוכן יהיה קדמי */
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
 }
 
-.wheel-wrapper {
-    position: relative;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    overflow: hidden; /* ✅ מונע חיתוכים מחוץ למסגרת */
+.cafe-title{
+    font-size: 0.7em;
 }
 
-.wheel {
+.cafe-subtitle{
+    font-size: 0.5em;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 0;
+    color: white;
+    position: fixed;
+    top: 0;
     width: 100%;
-    height: 100%;
-    transform-origin: center;
-    transition: transform 5s cubic-bezier(0.17, 0.67, 0.83, 0.9);
-    font-family: "Amatic SC", sans-serif;
-
-}
-
-.pointer {
-    position: absolute;
-    top: -20px; /* שומר על מיקום המחט מעל הגלגל */
-    left: 50%;
-    transform: translateX(-50%) rotate(0deg); /* ✅ מסובב חזרה לכיוון הנכון */
-    transform-origin: center bottom;
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(to bottom,#EFEDD8, #EFEDD8);
-    clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
-    z-index: 10;
+    z-index: 100;
 }
 
 
-.spin-button {
-    background-color: #EFEDD8;
-    color: #263056;
-    padding: 10px 20px;
-    border: none;
+.logo {
+    height: 40px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.nav-links li {
     cursor: pointer;
     font-size: 1rem;
-    border-radius: 5px;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.1s ease-in-out, background-color 0.3s;
-    font-family: "Amatic SC", sans-serif;
-
-
 }
 
-.spin-button:hover {
-    background-color: #8B4513;
-    transform: scale(1.05); /* ✅ אפקט אינטראקטיבי */
-}
+@media screen and (min-width: 768px) {
 
-.spin-button:active {
-    background-color: EFEDD8;
-    transform: scale(0.95);
-}
 
-.result {
-    font-size: 2rem;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    color: #EFEDD8; /* חום כהה */
-    font-family: "Amatic SC", sans-serif;
+    .cafe-title{
+        font-size: 1.5em;
+    }
 
-  
-}
+    .cafe-subtitle{
+        font-size: 1em;
+    }
 
-body {
-    font-family: "Amatic SC", sans-serif;
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px 20px;
+    }
+
+    .logo {
+        height: 50px;
+        margin-bottom: 0;
+    }
+
+    .nav-links {
+        flex-direction: row;
+        gap: 20px;
+    }
 }
