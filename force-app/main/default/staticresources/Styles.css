@@ -24,7 +24,7 @@ c-background-video {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: white;
+    color:#EFEDD8;
     z-index: 2; /* כדי שהתוכן יהיה קדמי */
     display: flex;
     flex-direction: column;
@@ -41,11 +41,10 @@ c-background-video {
 
 .navbar {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    background-color: #333;
-    padding: 10px 0;
-    color: white;
+    padding: 10px 20px;
+    color: #EFEDD8;
     position: fixed;
     top: 0;
     width: 100%;
@@ -56,17 +55,16 @@ c-background-video {
 .logo {
     height: 40px;
     cursor: pointer;
-    margin-bottom: 10px;
+    margin-bottom: auto;
 }
 
 
 .nav-links {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     list-style: none;
     padding: 0;
-    text-align: center;
+    margin: 0 auto;
 }
 
 .nav-links li {
