@@ -1,8 +1,11 @@
 <template>
     <div class="video-container">
-        <video autoplay muted loop playsinline id="bg-video">
-            <source src={videoSource} type="video/mp4">
-            הדפדפן שלך אינו תומך בווידאו.
-        </video>
+        <iframe 
+            id="bgVideoIframe"
+            src={videoUrl}
+            frameborder="0"
+            allow="autoplay"
+            allowfullscreen>
+        </iframe>
     </div>
 </template>

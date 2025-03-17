@@ -1,9 +1,9 @@
 import { LightningElement } from 'lwc';
-import backgroundVideo from '@salesforce/resourceUrl/backgroundVideo'; // שם הקובץ שלך
+import videoResource from '@salesforce/resourceUrl/backgroundVideo';
 
 export default class VideoBackground extends LightningElement {
-    videoSource = backgroundVideo; // קישור לוידאו
-
-    // פונקציה להסרת controls אחרי שהוידאו התחיל להתנגן
-
+     videoUrl = `${videoResource}/videoBackground/video.html`;
+    connectedCallback() {
+        console.log('Video URL:', this.videoUrl);
+    }
 }

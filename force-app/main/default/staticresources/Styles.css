@@ -29,14 +29,19 @@ c-background-video {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 90%; /* רוחב דיפולטי */
+    max-width: 700px; /* למנוע שהתוכן יהיה רחב מדי */
+    padding: 20px; 
 }
 
 .cafe-title{
-    font-size: 0.7em;
+    font-size: 1.5em;
+    font-family: "Amatic SC", sans-serif;
 }
 
 .cafe-subtitle{
-    font-size: 0.5em;
+    font-size: 1em;
+    font-family: "Amatic SC", sans-serif;
 }
 
 .navbar {
@@ -64,38 +69,216 @@ c-background-video {
     gap: 15px;
     list-style: none;
     padding: 0;
-    margin: 0 auto;
+    margin: 0;
+    margin-right: 40px;
+    direction: rtl;
 }
 
 .nav-links li {
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.5rem;
+    font-family: "Amatic SC", sans-serif;
+    border-bottom: groove;
 }
+
+.video-container {
+    position: fixed; /* הווידאו יהיה תמיד ברקע */
+    top: 0;
+    left: 0;
+    width: 100vw; /* 100% מרוחב המסך */
+    height: 100vh; /* 100% מגובה המסך */
+    overflow: hidden;  
+    background: #263056; 
+
+}
+
+.video {
+    object-position: left; /* מזיז את הווידאו 10% ימינה */
+}
+
+iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    pointer-events: none;
+}
+
+.content-overlay .cafe-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    direction: rtl; /* מרווח תחתון להפרדת הכותרת מהתת-כותרת */
+}
+
+.content-overlay .cafe-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 40px; /* מרווח תחתון גדול יותר בין התת-כותרת לגלגל המזל */
+}
+
+.wheel-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    
+}
+
+/* הגדלת הגלגל */
+.wheel-wrapper {
+    width: 220px; /* נגדיל אותו */
+    height: 220px;
+}
+
+.wheel {
+
+    font-family: "Amatic SC", sans-serif;
+}
+
+.spin-button{
+    font-family: "Amatic SC", sans-serif;
+    font-size: 1rem;
+    color:#263056;
+}
+
+.pointer {
+    position: absolute;
+    top: -10px; /* שומר על מיקום המחט מעל הגלגל */
+    left: 50%;
+    transform: translateX(-50%) rotate(0deg); /* ✅ מסובב חזרה לכיוון הנכון */
+    transform-origin: center bottom;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(to bottom,#EFEDD8, #EFEDD8);
+    clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    width: 30px; /* ⬅️ הקטנת הרוחב */
+    height: 30px;/* ⬅️ הקטנת הגובה */
+}
+
+
+.result{
+    font-family: "Amatic SC", sans-serif;
+    font-size: 1rem;
+    color:#EFEDD8;
+    margin-top: 20px;
+    font-weight: bolder;
+
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8); /* רקע כהה עם שקיפות */
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.icon {
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.icon:hover {
+    transform: scale(1.2);
+}
+
 
 @media screen and (min-width: 768px) {
 
 
     .cafe-title{
-        font-size: 1.5em;
+        font-size: 3rem;
     }
 
     .cafe-subtitle{
-        font-size: 1em;
+        font-size: 2rem;
     }
 
+    .logo{
+        height: 100px;
+        margin-left: auto;
+    }
+
+  
     .navbar {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            color: #EFEDD8;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+        
+    .nav-links li {
+        cursor: pointer;
+        font-size: 2rem;
+        font-family: "Amatic SC", sans-serif;
+        border-bottom: groove;
     }
 
-    .logo {
-        height: 50px;
-        margin-bottom: 0;
-    }
 
     .nav-links {
-        flex-direction: row;
-        gap: 20px;
+        display: flex;
+        justify-content: center; /* מיישר את התפריט למרכז */
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%); /* גורם לתפריט להיות במרכז */
+        width: max-content; /* מונע שהתפריט יתפרס על כל הרוחב */
+        padding: 10px 20px;
+        z-index: 100;
+        gap:60px;
     }
+
+
+    .wheel-wrapper {
+        width: 440px; /* נגדיל אותו */
+        height: 440px;
+    }
+
+
+    .pointer {
+        width: 60px; /* ⬅️ הקטנת הרוחב */
+        height: 60px;/* ⬅️ הקטנת הגובה */
+    }
+
+    .spin-button{
+        font-family: "Amatic SC", sans-serif;
+        font-size: 1.5rem;
+        color: #263056;
+        padding: 10px 20px;
+        background-color: #EFEDD8;
+    }
+
+
+    .content-overlay .cafe-title {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        direction: rtl; /* מרווח תחתון להפרדת הכותרת מהתת-כותרת */
+    }
+    
+    .content-overlay .cafe-subtitle {
+        font-size: 2rem;
+        margin-bottom: 40px; /* מרווח תחתון גדול יותר בין התת-כותרת לגלגל המזל */
+    }
+
+    .result{
+        font-size: 2rem;
+    }
+    
 }
