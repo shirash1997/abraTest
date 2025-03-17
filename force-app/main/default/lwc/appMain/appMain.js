@@ -5,11 +5,23 @@ export default class AppMain extends LightningElement {
 
     connectedCallback() {
         this.handleNavigation();
+        
+        // מאזין לשינויי URL בזמן אמת
+        window.addEventListener('popstate', () => {
+            this.handleNavigation();
+        });
     }
 
-    handleNavigation() {
-        const urlParams = new URLSearchParams(window.location.search);
-        this.currentPage = urlParams.get('page') || 'home';
+    handleNavigation(event) {
+        if (event && event.detail) {
+            this.currentPage = event.detail;
+            window.history.pushState({}, '', `?page=${event.detail}`);
+        } else {
+            const urlParams = new URLSearchParams(window.location.search);
+            this.currentPage = urlParams.get('page') || 'home';
+        }
+
+        console.log('🔄 ניווט לדף:', this.currentPage);
     }
 
     get isHomePage() {

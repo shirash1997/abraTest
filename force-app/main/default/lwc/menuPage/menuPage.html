@@ -1,13 +1,22 @@
 <template>
-    <div class="menu-container">
-        <h1 class="menu-title">☕ תפריט הקפה שלנו</h1>
-        <ul class="menu-list">
-            <template for:each={menuItems} for:item="item">
-                <li key={item.id} class="menu-item">
-                    <span class="coffee-name">{item.icon} {item.name}</span>
-                    <span class="coffee-price">{item.price} ₪</span>
-                </li>
+    <div class="menu-wrapper">
+        <div class="menu-container">
+            <template for:each={menuSections} for:item="section">
+                <div key={section.title} class="menu-section">
+                    <h1 class="menu-title">{section.title}</h1>
+                    <ul class="menu-list">
+                        <template for:each={section.items} for:item="item">
+                            <li key={item.id} class="menu-item">
+                                <div class="menu-row">
+                                    <span class="coffee-name">{item.icon} {item.name}</span>
+                                    <span class="coffee-price">{item.price} ₪</span>
+                                </div>
+                                <p class="item-description">{item.description}</p>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
             </template>
-        </ul>
+        </div>
     </div>
 </template>

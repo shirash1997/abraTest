@@ -44,16 +44,19 @@ c-background-video {
     font-family: "Amatic SC", sans-serif;
 }
 
+
+
 .navbar {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     padding: 10px 20px;
-    color: #EFEDD8;
+    color: #263056;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 100;
+    background:rgba(239, 237, 216, 0.8);
 }
 
 
@@ -182,7 +185,7 @@ iframe {
     bottom: 0;
     left: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.8); /* רקע כהה עם שקיפות */
+    background: rgba(38, 48, 86, 0.8); /* רקע כהה עם שקיפות */
     padding: 10px 0;
     display: flex;
     justify-content: center;
@@ -206,49 +209,86 @@ iframe {
 .fa-solid, .fas {
     color: #EFEDD8;
 }
+/* עיצוב כללי של מיכל התפריט */
+.menu-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px;
+    direction: rtl;
+    padding-bottom: 40px;
+}
 
 .menu-container {
+    width: 90%;
     max-width: 500px;
-    margin: 40px auto;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.6);
+    background: #fff;
     padding: 20px;
     border-radius: 10px;
-    color: #EFEDD8;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* עיצוב כותרות של קטגוריות */
 .menu-title {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #263056;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 5px;
     font-family: "Amatic SC", sans-serif;
-    margin-bottom: 20px;
+    direction: rtl;
 }
 
+/* רשימת פריטים */
 .menu-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
+/* פריט בודד */
 .menu-item {
+    padding: 12px 0;
+    border-bottom: 1px dashed #aaa; /* קו מקווקו כמו בתמונה */
+}
+
+/* שורה ראשית עם שם ומחיר */
+.menu-row {
     display: flex;
     justify-content: space-between;
-    padding: 10px 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    font-size: 1.5rem;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #263056;
+    direction: rtl;
     font-family: "Amatic SC", sans-serif;
 }
 
-.menu-item:last-child {
-    border-bottom: none;
-}
-
+/* שם הקפה / המאפה */
 .coffee-name {
     text-align: right;
+    flex: 1;
+    direction: rtl;
 }
 
+/* מחיר מימין */
 .coffee-price {
-    text-align: left;
+    text-align: right;
+    direction: rtl;
 }
+
+/* תיאור הפריט */
+.item-description {
+    font-size: 1rem;
+    color: #263056;
+    text-align: center;
+    margin-top: 5px;
+    font-family: "Amatic SC", sans-serif;
+}
+
+
 
 @media screen and (min-width: 768px) {
 
@@ -277,6 +317,7 @@ iframe {
             top: 0;
             width: 100%;
             z-index: 100;
+            background:rgba(38, 48, 86, 0.8);
         }
         
     .nav-links li {
@@ -335,6 +376,16 @@ iframe {
 
     .result{
         font-size: 2rem;
+    }
+
+    
+    .menu-title{
+        font-size: 3rem;
+
+    }
+
+    .menu-item {
+        font-size: 1.6rem;
     }
     
 }
