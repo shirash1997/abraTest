@@ -64,6 +64,7 @@ c-background-video {
     height: 60px;
     cursor: pointer;
     margin-bottom: auto;
+    margin-right: 50px;
 }
 
 
@@ -323,8 +324,8 @@ iframe {
 
 .popup-close {
     position: absolute;
-    top: 10px;
-    right: 15px;
+    top: -5px;
+    right: 5px;
     font-size: 24px;
     cursor: pointer;
 }
@@ -340,12 +341,109 @@ iframe {
     font-size: 1.8rem;
     color: #263056;
     font-family: "Amatic SC", sans-serif;
+    direction: rtl;
 }
 
 .popup-content p {
     font-size: 1.2rem;
-    color: #555;
+    color: #263056;
+    font-family: "Amatic SC", sans-serif;
+    direction: rtl;
 }
+
+/* כפתור המבורגר */
+.hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 200;
+    height: 30px; /* זה חשוב! */
+}
+
+.hamburger-menu .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #263056;
+    transition: all 0.3s ease; 
+}
+
+/* מיכל תפריט ההמבורגר */
+.hamburger-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+}
+
+/* רקע ההאפלה (פתיחה וסגירה חלקה) */
+.hamburger-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.show-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.hide-overlay {
+    opacity: 0;
+}
+
+/* תפריט ההמבורגר עצמו */
+.hamburger-content {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: #EFEDD8;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
+}
+
+/* אפקט כניסה חלקה */
+.slide-in {
+    transform: translateX(0);
+}
+
+/* אפקט יציאה חלקה */
+.slide-out {
+    transform: translateX(100%);
+}
+
+.hamburger-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.hamburger-links li {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #263056;
+    font-family: "Amatic SC", sans-serif;
+}
+
 
 
 
@@ -371,7 +469,7 @@ iframe {
             justify-content: center;
             align-items: center;
             padding: 10px 20px;
-            color: #EFEDD8;
+            color:  #263056;
             position: fixed;
             top: 0;
             width: 100%;
@@ -445,5 +543,41 @@ iframe {
     .menu-item {
         font-size: 1.6rem;
     }
+    .menu-wrapper {
+        padding-top: 120px;
+        padding-bottom: 60px;
+    }
+
+    .menu-container {
+        max-width: 2000px;
+        display: flex;
+        justify-content: space-between;  
+        padding: 50px;
+      }
+
+    .menu-row {
+        font-size: 1.4rem;
+    }
+
+    .item-description {
+        font-size: 1.2rem;
+    }
+
+    .popup-content {
+        max-width: 500px;
+    }
+
+    .popup-content h2 {
+        font-size: 2.5rem;
+    }
+
+    .popup-content p {
+        font-size: 1.5rem;
+    }
+
+    .popup-image {
+        width: 80%;
+    }
+
     
 }
