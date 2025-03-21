@@ -1,20 +1,17 @@
 <template>
     <!-- כפתור המבורגר -->
     <div class="hamburger-menu" onclick={toggleHamburgerMenu}>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
+        <div class="bar top-bar"></div>
+        <div class="bar middle-bar"></div>
+        <div class="bar bottom-bar"></div>
     </div>
 
     <!-- תפריט ההמבורגר עצמו -->
-    <div class="hamburger-container">
-        <div class="hamburger-overlay" onclick={toggleHamburgerMenu}></div>
-        <div class="hamburger-content">
-            <ul class="hamburger-links">
-                <li onclick={navigateToShows}>הופעות</li>
-                <li onclick={navigateToLaptop}>לפטופ</li>
-                <li onclick={navigateToAboutUs}>עלינו</li>
-            </ul>
-        </div>
+    <div class="hamburger-content">
+        <ul class="hamburger-links">
+            <li onclick={navigateToShows}>הופעות</li>
+            <li onclick={navigateToLaptop}>לפטופ</li>
+            <li onclick={navigateToAboutUs}>עלינו</li>
+        </ul>
     </div>
 </template>

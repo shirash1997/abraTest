@@ -6,15 +6,21 @@ export default class HamburgerMenu extends LightningElement {
     toggleHamburgerMenu() {
         this.isHamburgerOpen = !this.isHamburgerOpen;
 
-        const overlay = this.template.querySelector('.hamburger-overlay');
+        const bars = this.template.querySelectorAll('.bar');
         const content = this.template.querySelector('.hamburger-content');
-
+        
         if (this.isHamburgerOpen) {
-            overlay.style.display = 'block';
-            content.style.transform = 'translateX(0)';
+            // פתיחה של התפריט
+            bars[0].classList.add('rotate-top');
+            bars[1].classList.add('fade-out');
+            bars[2].classList.add('rotate-bottom');
+            content.classList.add('open');  // מוסיף את ה-class לפתיחה
         } else {
-            overlay.style.display = 'none';
-            content.style.transform = 'translateX(100%)';
+            // סגירה של התפריט
+            bars[0].classList.remove('rotate-top');
+            bars[1].classList.remove('fade-out');
+            bars[2].classList.remove('rotate-bottom');
+            content.classList.remove('open');  // מסיר את ה-class לסגירה
         }
     }
 
