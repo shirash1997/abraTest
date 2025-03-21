@@ -100,7 +100,7 @@ c-background-video {
     width: 100vw; /* 100% מרוחב המסך */
     height: 100vh; /* 100% מגובה המסך */
     overflow: hidden;  
-    background: #263056; 
+    /* background: #263056;  */
 
 }
 
@@ -453,7 +453,7 @@ iframe {
     object-fit: cover;
 }
 
-.content-overlay {
+.alcohol-content-overlay {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -461,16 +461,23 @@ iframe {
     text-align: center;
     color: #EFEDD8;
     z-index: 2;
+    background-color: #EFEDD8;
+    opacity: 0.8;
+    padding: 0px 20px 10px;
+    border-radius: 10px;
+    width: max-content;
+    direction: rtl;
+    font-weight: bold;
 }
 
-.page-title {
+.alcohol-page-title {
     font-size: 2rem;
     font-family: "Amatic SC", sans-serif;
     margin-bottom: 10px;
     color: #263056;
 }
 
-.page-description {
+.alcohol-page-description {
     font-size: 1.5rem;
     font-family: "Amatic SC", sans-serif;
     margin-bottom: 20px;
