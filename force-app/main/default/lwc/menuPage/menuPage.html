@@ -6,7 +6,7 @@
                     <h1 class="menu-title">{section.title}</h1>
                     <ul class="menu-list">
                         <template for:each={section.items} for:item="item">
-                            <li key={item.id} class="menu-item">
+                            <li key={item.id} class="menu-item" data-id={item.id} onclick={openPopup}>
                                 <div class="menu-row">
                                     <span class="coffee-name">{item.icon} {item.name}</span>
                                     <span class="coffee-price">{item.price} ₪</span>
@@ -19,4 +19,16 @@
             </template>
         </div>
     </div>
+
+    <!-- פופ-אפ תמונה -->
+    <template if:true={selectedItem}>
+        <div class="popup-overlay" onclick={closePopup}>
+            <div class="popup-content" onclick={stopPropagation}>
+                <span class="popup-close" onclick={closePopup}>&times;</span>
+                <img src={selectedItem.image} alt={selectedItem.name} class="popup-image">
+                <h2>{selectedItem.name}</h2>
+                <p>{selectedItem.description}</p>
+            </div>
+        </div>
+    </template>
 </template>

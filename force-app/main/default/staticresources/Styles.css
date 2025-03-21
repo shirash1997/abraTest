@@ -252,6 +252,15 @@ iframe {
 .menu-item {
     padding: 12px 0;
     border-bottom: 1px dashed #aaa; /* קו מקווקו כמו בתמונה */
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.menu-item:hover {
+    background:rgba(239, 237, 216, 0.8); /* רקע עדין */
+    transform: scale(1.02); /* מגדיל מעט את הפריט */
+    border-left: 4px solid #EFEDD8; /* פס שמאלי להדגשה */
+    padding-left: 8px; /* כדי שהטקסט יישאר במרכז */
 }
 
 /* שורה ראשית עם שם ומחיר */
@@ -288,6 +297,56 @@ iframe {
     font-family: "Amatic SC", sans-serif;
 }
 
+/* עיצוב הפופ-אפ */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+
+.popup-content {
+    background: #EFEDD8;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    max-width: 400px;
+    width: 90%;
+}
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.popup-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.popup-content h2 {
+    font-size: 1.8rem;
+    color: #263056;
+    font-family: "Amatic SC", sans-serif;
+}
+
+.popup-content p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
 
 
 @media screen and (min-width: 768px) {
@@ -317,7 +376,6 @@ iframe {
             top: 0;
             width: 100%;
             z-index: 100;
-            background:rgba(38, 48, 86, 0.8);
         }
         
     .nav-links li {
