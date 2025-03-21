@@ -1,8 +1,8 @@
-import { LightningElement } from 'lwc';
-import videoResource from '@salesforce/resourceUrl/backgroundVideo';
+import { LightningElement, api } from 'lwc';
 
 export default class VideoBackground extends LightningElement {
-     videoUrl = `${videoResource}/videoBackground/video.html`;
+    @api videoUrl; // קבלה של הוידאו דרך API
+
     connectedCallback() {
         console.log('Video URL:', this.videoUrl);
     }

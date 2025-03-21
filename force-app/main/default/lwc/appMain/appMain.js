@@ -35,4 +35,8 @@ export default class AppMain extends LightningElement {
     get isCartPage() {
         return this.currentPage === 'cart';
     }
+
+    get isMusicPage() {
+        return this.currentPage === 'music';
+    }
 }

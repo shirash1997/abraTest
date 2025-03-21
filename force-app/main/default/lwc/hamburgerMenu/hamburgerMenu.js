@@ -24,8 +24,8 @@ export default class HamburgerMenu extends LightningElement {
         }
     }
 
-    navigateToShows() {
-        this.dispatchEvent(new CustomEvent('navigation', { detail: 'shows' }));
+    navigateToMusic() {
+        this.dispatchEvent(new CustomEvent('navigation', { detail: 'music' }));
         this.toggleHamburgerMenu();
     }
 
