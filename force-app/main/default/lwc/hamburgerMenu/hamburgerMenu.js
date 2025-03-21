@@ -3,17 +3,19 @@ import { LightningElement, track } from 'lwc';
 export default class HamburgerMenu extends LightningElement {
     @track isHamburgerOpen = false;
 
-    get overlayClass() {
-        return this.isHamburgerOpen ? 'show-overlay' : 'hide-overlay';
-    }
-
-    get contentClass() {
-        return this.isHamburgerOpen ? 'slide-in' : 'slide-out';
-    }
-
-    // הגדרה נכונה של הפונקציה
     toggleHamburgerMenu() {
         this.isHamburgerOpen = !this.isHamburgerOpen;
+
+        const overlay = this.template.querySelector('.hamburger-overlay');
+        const content = this.template.querySelector('.hamburger-content');
+
+        if (this.isHamburgerOpen) {
+            overlay.style.display = 'block';
+            content.style.transform = 'translateX(0)';
+        } else {
+            overlay.style.display = 'none';
+            content.style.transform = 'translateX(100%)';
+        }
     }
 
     navigateToShows() {

@@ -361,27 +361,17 @@ iframe {
     top: 20px;
     right: 20px;
     z-index: 200;
-    height: 30px; /* זה חשוב! */
+    height: 30px;
 }
 
 .hamburger-menu .bar {
     width: 25px;
     height: 3px;
     background-color: #263056;
-    transition: all 0.3s ease; 
+    transition: all 0.3s ease;
 }
 
-/* מיכל תפריט ההמבורגר */
-.hamburger-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-}
-
-/* רקע ההאפלה (פתיחה וסגירה חלקה) */
+/* רקע ההאפלה */
 .hamburger-overlay {
     position: fixed;
     top: 0;
@@ -389,25 +379,16 @@ iframe {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    transition: opacity 0.3s;
-    pointer-events: none;
+    display: none;
+    z-index: 199;
 }
 
-.show-overlay {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.hide-overlay {
-    opacity: 0;
-}
-
-/* תפריט ההמבורגר עצמו */
+/* תוכן התפריט */
 .hamburger-content {
     position: fixed;
     top: 0;
     right: 0;
-    width: 250px;
+    width: 120px;
     height: 100vh;
     background-color: #EFEDD8;
     padding: 20px;
@@ -416,24 +397,18 @@ iframe {
     justify-content: start;
     align-items: flex-start;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s;
-}
-
-/* אפקט כניסה חלקה */
-.slide-in {
-    transform: translateX(0);
-}
-
-/* אפקט יציאה חלקה */
-.slide-out {
     transform: translateX(100%);
+    transition: transform 0.3s;
+    z-index: 200;
+    opacity: 0.9;
 }
 
 .hamburger-links {
     list-style: none;
     padding: 0;
     margin: 0;
-    width: 100%;
+    direction: rtl;
+    align-self: flex-end;
 }
 
 .hamburger-links li {
