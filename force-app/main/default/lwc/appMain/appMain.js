@@ -39,4 +39,8 @@ export default class AppMain extends LightningElement {
     get isMusicPage() {
         return this.currentPage === 'music';
     }
+
+    get isTAPage(){
+        return this.currentPage === 'ta'; 
+    }
 }

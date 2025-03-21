@@ -5,13 +5,15 @@
                 <c-home-page></c-home-page>
             </template>
             <template if:true={isMenuPage}>
-                <c-menu-page></c-menu-page>
-            </template>
+                <c-menu-page is-ta-page="false" show-alcohol="true"></c-menu-page>            </template>
             <template if:true={isCartPage}>
                 <!-- <c-cart-page></c-cart-page> -->
             </template>
             <template if:true={isMusicPage}>
                 <c-music-page></c-music-page>
+            </template>
+            <template if:true={isTAPage}>
+                <c-ta-page></c-ta-page>
             </template>
         
             <c-footer></c-footer>

@@ -12,6 +12,14 @@
                                     <span class="coffee-price">{item.price} ₪</span>
                                 </div>
                                 <p class="item-description">{item.description}</p>
+                                <template if:true={isTaPage}>
+                                    <div class="item-controls">
+                                        <button data-id={item.id} onclick={handleDecreaseQuantity}>-</button>
+                                        <span>{quantities[item.id] || 0}</span>
+                                        <button data-id={item.id} onclick={handleIncreaseQuantity}>+</button>
+                                    </div>
+                                    <button class="add-to-cart-btn" data-id={item.id} onclick={handleAddToCart}>הוסף לעגלה</button>
+                                </template>
                             </li>
                         </template>
                     </ul>

@@ -1,8 +1,13 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, track , api} from 'lwc';
 import CoffeeImages from '@salesforce/resourceUrl/CoffeeImages'; // חיבור לסטטי ריסורס
 
 export default class MenuPage extends LightningElement {
     @track selectedItem = null;
+
+    @api isTaPage = false; // האם זה עמוד TA? (בברירת מחדל - false)
+    @api showAlcohol; 
+    @track quantities = {};
+    // האם להציג את תפריט האלכוהול? (בברירת מחדל - כן)
     menuSections = [
         {
             title: 'תפריט הקפה שלנו ☕',
@@ -52,4 +57,36 @@ export default class MenuPage extends LightningElement {
     stopPropagation = (event) => {
         event.stopPropagation();
     };
+
+    get filteredMenuSections() {
+        if (this.isTaPage) {
+            return this.menuSections.filter(section => 
+                !this.showAlcohol || section.title !== 'אלכוהול קטן 🍸'
+            );
+        }
+        return this.menuSections;
+    }
+
+    handleIncreaseQuantity(event) {
+        const itemId = event.currentTarget.dataset.id;
+        this.quantities[itemId] = (this.quantities[itemId] || 0) + 1;
+    }
+
+    handleDecreaseQuantity(event) {
+        const itemId = event.currentTarget.dataset.id;
+        if (this.quantities[itemId] > 0) {
+            this.quantities[itemId]--;
+        }
+    }
+
+    handleAddToCart(event) {
+        const itemId = event.currentTarget.dataset.id;
+        const quantity = this.quantities[itemId] || 0;
+        
+        if (quantity > 0) {
+            const item = this.menuSections.flatMap(section => section.items).find(item => item.id == itemId);
+            addItemToCart(item, quantity); // פונקציה שמוסיפה לעגלה
+            this.quantities[itemId] = 0; // מאפס את הכמות אחרי שהוספנו לעגלה
+        }
+    }
 }
