@@ -522,6 +522,9 @@ iframe {
     margin-bottom: 10px;
 }
 
+i.fas.fa-shopping-cart{
+        color: #263056;
+}
 
 
 @media screen and (min-width: 768px) {
