@@ -2,7 +2,7 @@ import { LightningElement, track } from 'lwc';
 
 export default class AppMain extends LightningElement {
     @track currentPage = 'home';
-
+    @track isTaPage = false;
     connectedCallback() {
         this.handleNavigation();
         
@@ -21,7 +21,10 @@ export default class AppMain extends LightningElement {
             this.currentPage = urlParams.get('page') || 'home';
         }
 
-        console.log('🔄 ניווט לדף:', this.currentPage);
+        this.isTaPage = this.currentPage === 'ta';
+
+        console.log(' ניווט לדף:', this.currentPage);
+        console.log('האם זה עמוד TA?', this.isTaPage);
     }
 
     get isHomePage() {

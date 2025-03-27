@@ -67,17 +67,15 @@ export default class MenuPage extends LightningElement {
         if (this.isTaPage) {
             return this.menuSections.filter(section => 
                 (section.title === 'תפריט הקפה שלנו ☕') || 
-            (section.title === 'חייב משהו בצד, לא? 🥐')
+                (section.title === 'חייב משהו בצד, לא? 🥐')
             );
-        }
-        else{
-            return this.menuSections.filter(section => 
-                (section.title === 'תפריט הקפה שלנו ☕') || 
-            (section.title === 'חייב משהו בצד, לא? 🥐') ||
-            (section.title === 'אלכוהול קטן 🍸')
-            );
+        } else {
+            console.log('filteredMenuSections after click:' +JSON.stringify(this.menuSections)); // זה יוחזר כאשר isTaPage הוא false - כלומר, כל התפריטים המלאים.
+            return this.menuSections;
         }
     }
+    
+
 
 
     handleIncreaseQuantity(event) {
