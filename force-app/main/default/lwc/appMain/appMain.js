@@ -8,7 +8,7 @@ export default class AppMain extends LightningElement {
 
     connectedCallback() {
         this.handleNavigation();
-        
+       console.log('current page: '+this.currentPage);
         // מאזין לשינויי URL בזמן אמת
         window.addEventListener('popstate', () => {
             this.handleNavigation();
@@ -35,7 +35,7 @@ export default class AppMain extends LightningElement {
     }
 
     get isMenuPage() {
-        return this.currentPage === 'menu';
+        return this.currentPage === 'menu' || this.currentPage === 'ta';
     }
 
     get isCartPage() {

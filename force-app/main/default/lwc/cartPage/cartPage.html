@@ -1,18 +1,18 @@
 <template>
-    <div class="cart-page">
-        <h1>🛒 עגלה</h1>
+    <div class="cart-wrapper">
+        <div class="cart-container">
+        <h2 class="cart-title">🛒 עגלה</h2>
         
         <template if:true={cartItems.length}>
-            <ul>
+            <ul class="cart-list">
                 <template for:each={cartItems} for:item="item">
                     <li key={item.id} class="cart-item">
-                        <div class="cart-item-info">
+                        <div class="cart-row">
                             <img src={item.image} alt={item.name} class="cart-item-image"/>
-                            <div>
-                                <h2>{item.name}</h2>
-                                <p>{item.description}</p>
-                                <p>כמות: {item.quantity}</p>
-                                <p>מחיר כולל: {item.totalPrice} ₪</p>
+                            <div class="cart-item-details"> <!-- שימי לב לזה -->
+                                <span class="coffee-name">{item.name}</span>
+                                <span class="coffee-quantity">כמות: {item.quantity}</span>
+                                <span class="coffee-price">מחיר כולל: {item.totalPrice} ₪</span>
                             </div>
                         </div>
                     </li>
@@ -25,4 +25,5 @@
             <p>העגלה שלך ריקה! 😢</p>
         </template>
     </div>
+</div>
 </template>
