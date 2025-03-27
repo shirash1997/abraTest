@@ -4,7 +4,7 @@ import CoffeeImages from '@salesforce/resourceUrl/CoffeeImages'; // חיבור �
 export default class MenuPage extends LightningElement {
     @track selectedItem = null;
     @track cart = []; 
-    @api isTaPage = false; // האם זה עמוד TA? (בברירת מחדל - false)
+    @api isTaPage; // האם זה עמוד TA? (בברירת מחדל - false)
     @api showAlcohol; 
     @track quantities = {};
     // האם להציג את תפריט האלכוהול? (בברירת מחדל - כן)
@@ -43,6 +43,11 @@ export default class MenuPage extends LightningElement {
             ]
         }
     ];
+
+    connectedCallback() {
+        console.log('is TA page?', this.isTaPage);
+        console.log('filteredMenuSections:' +JSON.stringify(this.filteredMenuSections));
+    }
     openPopup = (event) => {
         const itemId = event.currentTarget.dataset.id;
         this.selectedItem = this.menuSections
@@ -61,11 +66,19 @@ export default class MenuPage extends LightningElement {
     get filteredMenuSections() {
         if (this.isTaPage) {
             return this.menuSections.filter(section => 
-                this.showAlcohol || section.title !== 'אלכוהול קטן 🍸'
+                (section.title === 'תפריט הקפה שלנו ☕') || 
+            (section.title === 'חייב משהו בצד, לא? 🥐')
             );
         }
-        return this.menuSections;
+        else{
+            return this.menuSections.filter(section => 
+                (section.title === 'תפריט הקפה שלנו ☕') || 
+            (section.title === 'חייב משהו בצד, לא? 🥐') ||
+            (section.title === 'אלכוהול קטן 🍸')
+            );
+        }
     }
+
 
     handleIncreaseQuantity(event) {
         const itemId = parseInt(event.target.dataset.id, 10);
