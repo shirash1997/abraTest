@@ -1,24 +1,30 @@
 <template>
     <div class="menu-wrapper">
         <div class="menu-container">
-            <template for:each={menuSections} for:item="section">
+            <template for:each={filteredMenuSections} for:item="section">
                 <div key={section.title} class="menu-section">
-                    <h1 class="menu-title">{section.title}</h1>
+                    <h2 class="menu-title">{section.title}</h2>
                     <ul class="menu-list">
                         <template for:each={section.items} for:item="item">
-                            <li key={item.id} class="menu-item" data-id={item.id} onclick={openPopup}>
+                            <li key={item.id} class="menu-item">
                                 <div class="menu-row">
-                                    <span class="coffee-name">{item.icon} {item.name}</span>
+                                    <span class="coffee-name">{item.name}</span>
                                     <span class="coffee-price">{item.price} ₪</span>
                                 </div>
                                 <p class="item-description">{item.description}</p>
+
+                                <!-- הצגת כפתורי הוספה לעגלה רק אם זה עמוד TA -->
                                 <template if:true={isTaPage}>
-                                    <div class="item-controls">
-                                        <button data-id={item.id} onclick={handleDecreaseQuantity}>-</button>
-                                        <span>{quantities[item.id] || 0}</span>
-                                        <button data-id={item.id} onclick={handleIncreaseQuantity}>+</button>
+                                    <div class="quantity-buttons">
+                                       <div class="quantity-button">
+
+                                    <button data-id={item.id} onclick={handleDecreaseQuantity}>-</button>
+                                    
+                                {item.quantity}
+                                    <button data-id={item.id} onclick={handleIncreaseQuantity}>+</button>
                                     </div>
-                                    <button class="add-to-cart-btn" data-id={item.id} onclick={handleAddToCart}>הוסף לעגלה</button>
+                                    <button data-id={item.id} onclick={addToCart}>הוסף לעגלה</button>
+                                    </div>
                                 </template>
                             </li>
                         </template>
@@ -27,7 +33,6 @@
             </template>
         </div>
     </div>
-
     <!-- פופ-אפ תמונה -->
     <template if:true={selectedItem}>
         <div class="popup-overlay" onclick={closePopup}>

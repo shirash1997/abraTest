@@ -526,7 +526,19 @@ i.fas.fa-shopping-cart{
         color: #263056;
 }
 
-
+button {
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-family: "Amatic SC", sans-serif;
+    color: #263056;
+    background-color: #EFEDD8;
+    border-color: #EFEDD8;
+    border-block-end-style: none;
+}
+.quantity-buttons{
+    display:flex;
+    gap:20px;
+}
 @media screen and (min-width: 768px) {
 
 
