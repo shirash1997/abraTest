@@ -49,7 +49,7 @@ export default class WheelOfFortune extends LightningElement {
     }
 
     get buttonLabel() {
-        return this.isSpinning ? '...מסתובב' : '🎡 סובב את הגלגל';
+        return this.isSpinning ? '...מסתובב' : '🎡סובבו את הגלגל ';
     }
 
     playApplauseSound() {

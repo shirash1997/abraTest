@@ -49,19 +49,18 @@ export default class AppMain extends LightningElement {
     get isTAPage(){
         return this.currentPage === 'ta'; 
     }
-    
+
     handleAddToCart(event) {
         const newItem = event.detail;
-        
-        // לבדוק אם הפריט כבר קיים בעגלה
-        const existingItemIndex = this.cartItems.findIndex(item => item.id === newItem.id);
+        console.log('new item on main app: '+newItem);
+        // בדיקה אם הפריט כבר קיים בעגלה
+        const existingItem = this.cartItems.find(item => item.id === newItem.id);
 
-        if (existingItemIndex > -1) {
-            // אם קיים, נעדכן את הכמות
-            this.cartItems[existingItemIndex].quantity += newItem.quantity;
+        if (existingItem) {
+            existingItem.quantity += newItem.quantity;
+            existingItem.totalPrice = existingItem.price * existingItem.quantity;
         } else {
-            // אם לא קיים, נוסיף אותו לעגלה
-            this.cartItems = [...this.cartItems, newItem];
+            this.cartItems = [...this.cartItems, { ...newItem, totalPrice: newItem.price * newItem.quantity }];
         }
 
         console.log('🛒 עגלה מעודכנת: ', JSON.stringify(this.cartItems));

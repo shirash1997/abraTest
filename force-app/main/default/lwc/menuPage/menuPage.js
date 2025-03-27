@@ -125,21 +125,25 @@ export default class MenuPage extends LightningElement {
             .find(item => item.id === itemId);
     
         if (selectedItem && selectedItem.quantity > 0) {
+            // מוודאים שאנחנו מעבירים רק את הנתונים הנחוצים לעגלה
             const cartItem = { 
-                ...selectedItem, 
+                id: selectedItem.id,
+                name: selectedItem.name,
+                price: selectedItem.price,
+                quantity: selectedItem.quantity,
+                description: selectedItem.description,
+                image: selectedItem.image,
                 totalPrice: selectedItem.price * selectedItem.quantity 
             };
+
+            this.dispatchEvent(new CustomEvent('addtocart', { detail: cartItem }));
     
-            const addToCartEvent = new CustomEvent('addtocart', {
-                detail: cartItem 
-            });
-    
-            this.dispatchEvent(addToCartEvent); // שליחה לקומפוננטה ההורה
-            
+
             console.log('✅ עגלה מעודכנת: ', JSON.stringify(cartItem));
         } else {
             alert('🛒 נא לבחור כמות לפני הוספה לעגלה.');
         }
     }
+    
     
 }

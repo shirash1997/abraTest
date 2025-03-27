@@ -1,17 +1,16 @@
 import { LightningElement, api, track } from 'lwc';
 
 export default class CartPage extends LightningElement {
-    @api cartItems = []; // רשימת הפריטים שנשלחים לעגלה
+    @api cartItems; // רשימת הפריטים שנשלחים לעגלה
 
     get totalPrice() {
-        return this.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+        return this.cartItems.reduce((total, item) => total + item.totalPrice, 0);
     }
 
-    get PriceForItem(){
-        return item.price * item.quantity;
-    }
 
-    connectedCallback(){
-        console.log('cartItems:', this.cartItems);
-    }
+
+        connectedCallback(){
+            console.log('📦 cartItems: ', JSON.stringify(this.cartItems));
+        }
+    
 }
