@@ -539,6 +539,30 @@ button {
     display:flex;
     gap:20px;
 }
+
+.cart-page {
+    padding: 20px;
+}
+
+.cart-item {
+    display: flex;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.cart-item-info {
+    display: flex;
+    gap: 10px;
+}
+
+.cart-item-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+
 @media screen and (min-width: 768px) {
 
 

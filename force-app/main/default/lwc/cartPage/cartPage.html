@@ -1,0 +1,27 @@
+<template>
+    <div class="cart-page">
+        <h1>🛒 עגלה</h1>
+        
+        <template if:true={cartItems.length}>
+            <ul>
+                <template for:each={cartItems} for:item="item">
+                    <li key={item.id} class="cart-item">
+                        <div class="cart-item-info">
+                            <img src={item.image} alt={item.name} class="cart-item-image"/>
+                            <div>
+                                <h2>{item.name}</h2>
+                                <p>{item.description}</p>
+                                <p>כמות: {item.quantity}</p>
+                                <p>מחיר כולל: {PriceForItem} ₪</p>
+                            </div>
+                        </div>
+                    </li>
+                </template>
+            </ul>
+        </template>
+        
+        <template if:false={cartItems.length}>
+            <p>העגלה שלך ריקה! 😢</p>
+        </template>
+    </div>
+</template>

@@ -5,10 +5,10 @@
                 <c-home-page></c-home-page>
             </template>
             <template if:true={isMenuPage}>
-                <c-menu-page is-ta-page={isTAPage}></c-menu-page>
+                <c-menu-page is-ta-page={isTAPage} onaddtocart={handleAddToCart}></c-menu-page>
         </template>
             <template if:true={isCartPage}>
-                <!-- <c-cart-page></c-cart-page> -->
+                <c-cart-page cart-items={cartItems}></c-cart-page>
             </template>
             <template if:true={isMusicPage}>
                 <c-music-page></c-music-page>

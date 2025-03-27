@@ -123,21 +123,23 @@ export default class MenuPage extends LightningElement {
         const selectedItem = this.menuSections
             .flatMap(section => section.items)
             .find(item => item.id === itemId);
-
+    
         if (selectedItem && selectedItem.quantity > 0) {
-            const cartItemIndex = this.cart.findIndex(cartItem => cartItem.id === itemId);
+            const cartItem = { 
+                ...selectedItem, 
+                totalPrice: selectedItem.price * selectedItem.quantity 
+            };
+    
+            const addToCartEvent = new CustomEvent('addtocart', {
+                detail: cartItem 
+            });
+    
+            this.dispatchEvent(addToCartEvent); // שליחה לקומפוננטה ההורה
             
-            if (cartItemIndex > -1) {
-                // אם הפריט כבר קיים בעגלה, נעדכן את הכמות
-                this.cart[cartItemIndex].quantity = selectedItem.quantity;
-            } else {
-                // אחרת, נוסיף אותו לעגלה
-                this.cart = [...this.cart, { ...selectedItem }];
-            }
-
-            console.log('✅ עגלה מעודכנת: ', JSON.stringify(this.cart));
+            console.log('✅ עגלה מעודכנת: ', JSON.stringify(cartItem));
         } else {
             alert('🛒 נא לבחור כמות לפני הוספה לעגלה.');
         }
     }
+    
 }
