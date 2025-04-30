@@ -48,12 +48,28 @@ export default class MenuPage extends LightningElement {
         console.log('is TA page?', this.isTaPage);
         console.log('filteredMenuSections:' +JSON.stringify(this.filteredMenuSections));
     }
+    
     openPopup = (event) => {
-        const itemId = event.currentTarget.dataset.id;
-        this.selectedItem = this.menuSections
+        const target = event.target;
+    
+        // מניעת פתיחת פופאפ אם נלחץ על כפתור או אלמנט בתוך quantity-buttons
+        if (
+            target.tagName === 'BUTTON' ||
+            target.closest('.quantity-buttons')
+        ) {
+            return;
+        }
+    
+        const itemId = parseInt(event.currentTarget.dataset.id, 10);
+        const foundItem = this.menuSections
             .flatMap(section => section.items)
-            .find(item => item.id === parseInt(itemId, 10));
+            .find(item => item.id === itemId);
+    
+        if (foundItem) {
+            this.selectedItem = foundItem;
+        }
     };
+    
 
     closePopup = () => {
         this.selectedItem = null;
