@@ -1,6 +1,6 @@
 <template>
     <div class="menu-wrapper">
-        <div class="menu-container">
+        <div class={menuContainerClass}>
             <template for:each={filteredMenuSections} for:item="section">
                 <div key={section.title} class="menu-section">
                     <h2 class="menu-title">{section.title}</h2>

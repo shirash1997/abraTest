@@ -48,28 +48,27 @@ export default class MenuPage extends LightningElement {
         console.log('is TA page?', this.isTaPage);
         console.log('filteredMenuSections:' +JSON.stringify(this.filteredMenuSections));
     }
-    
-    openPopup = (event) => {
-        const target = event.target;
-    
-        // מניעת פתיחת פופאפ אם נלחץ על כפתור או אלמנט בתוך quantity-buttons
-        if (
-            target.tagName === 'BUTTON' ||
-            target.closest('.quantity-buttons')
-        ) {
-            return;
-        }
-    
-        const itemId = parseInt(event.currentTarget.dataset.id, 10);
-        const foundItem = this.menuSections
-            .flatMap(section => section.items)
-            .find(item => item.id === itemId);
-    
-        if (foundItem) {
-            this.selectedItem = foundItem;
-        }
-    };
-    
+
+   openPopup = (event) => {
+    const target = event.target;
+
+    // ביטול פתיחת הפופ-אפ אם נלחץ על כפתור או משהו בתוך .quantity-buttons
+    if (
+        target.closest('button') || // כל כפתור
+        target.closest('.quantity-buttons') // כל אזור כפתורי הכמות
+    ) {
+        return;
+    }
+
+    const itemId = parseInt(event.currentTarget.dataset.id, 10);
+    const foundItem = this.menuSections
+        .flatMap(section => section.items)
+        .find(item => item.id === itemId);
+
+    if (foundItem) {
+        this.selectedItem = foundItem;
+    }
+};
 
     closePopup = () => {
         this.selectedItem = null;
@@ -164,5 +163,9 @@ export default class MenuPage extends LightningElement {
     stopPropagation = (event) => {
         event.stopPropagation();
     };
+
+    get menuContainerClass() {
+        return this.isTaPage ? 'menu-container ta' : 'menu-container';
+    }
     
 }
