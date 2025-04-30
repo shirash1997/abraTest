@@ -13,7 +13,7 @@
                                 </div>
                                 <p class="item-description">{item.description}</p>
 
-                                <!-- הצגת כפתורי הוספה לעגלה רק אם זה עמוד TA -->
+                                <!-- הצגת כפתורי הוספה עגלה רק אם זה עמוד TA -->
                                 <template if:true={isTaPage}>
                                     <div class="quantity-buttons">
                                        <div class="quantity-button">
@@ -23,7 +23,7 @@
                                 {item.quantity}
                                     <button data-id={item.id} onclick={handleIncreaseQuantity}>+</button>
                                     </div>
-                                    <button data-id={item.id} onclick={addToCart}>הוסף לעגלה</button>
+                                    <button data-id={item.id} onclick={addToCart}>עדכן עגלה</button>
                                     </div>
                                 </template>
                             </li>

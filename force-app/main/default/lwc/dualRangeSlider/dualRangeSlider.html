@@ -1,0 +1,44 @@
+<template>
+  <div class="slider-wrapper">
+    <label class="label">בחר טווח:</label>
+
+    <!-- Inputs למספרים -->
+    <div class="number-inputs">
+      <label>
+        מינימום:
+        <input type="number" value={minValue} min={min} max={maxValue} onchange={handleMinInputChange} />
+      </label>
+      <label>
+        מקסימום:
+        <input type="number" value={maxValue} min={minValue} max={max} onchange={handleMaxInputChange} />
+      </label>
+    </div>
+
+    <div class="range-display">
+      <span>0</span>
+      <div class="range-container">
+        <div class="slider-track" style={trackStyle}></div>
+
+        <input
+          type="range"
+          min={min}
+          max={max}
+          value={minValue}
+          oninput={handleMinChange}
+          class="slider-input slider-left"
+        />
+        <input
+          type="range"
+          min={min}
+          max={max}
+          value={maxValue}
+          oninput={handleMaxChange}
+          class="slider-input slider-right"
+        />
+      </div>
+      <span>100</span>
+    </div>
+
+    <p class="selected-range">טווח נבחר: {minValue} - {maxValue}</p>
+  </div>
+</template>

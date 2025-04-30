@@ -1,0 +1,9 @@
+<aura:component controller="OpportunityChecker" implements="force:appHostable,flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="channel" type="String" default="/topic/ClosedWonOpportunities"/>
+    <aura:attribute name="subscription" type="Object"/>
+
+    <lightning:empApi aura:id="empApi"/>
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+</aura:component>

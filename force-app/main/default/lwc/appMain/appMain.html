@@ -1,5 +1,5 @@
 <template>
-            <c-menu-component onnavigation={handleNavigation}></c-menu-component>
+            <c-menu-component onnavigation={handleNavigation} onaddtocart={handleAddToCart} cart-items={cartItems}></c-menu-component>
             <c-hamburger-menu onnavigation={handleNavigation}></c-hamburger-menu>
             <template if:true={isHomePage}>
                 <c-home-page></c-home-page>
