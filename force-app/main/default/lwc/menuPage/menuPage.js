@@ -145,5 +145,8 @@ export default class MenuPage extends LightningElement {
         }
     }
     
+    stopPropagation = (event) => {
+        event.stopPropagation();
+    };
     
 }

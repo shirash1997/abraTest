@@ -6,7 +6,7 @@
                     <h2 class="menu-title">{section.title}</h2>
                     <ul class="menu-list">
                         <template for:each={section.items} for:item="item">
-                            <li key={item.id} class="menu-item">
+                            <li  key={item.id} class="menu-item" data-id={item.id} onclick={openPopup}>
                                 <div class="menu-row">
                                     <span class="coffee-name">{item.name}</span>
                                     <span class="coffee-price">{item.price} ₪</span>
@@ -18,12 +18,12 @@
                                     <div class="quantity-buttons">
                                        <div class="quantity-button">
 
-                                    <button data-id={item.id} onclick={handleDecreaseQuantity}>-</button>
+                                    <button data-id={item.id} onclick={handleDecreaseQuantity} onmousedown={stopPropagation}>-</button>
                                     
                                 {item.quantity}
-                                    <button data-id={item.id} onclick={handleIncreaseQuantity}>+</button>
+                                    <button data-id={item.id} onclick={handleIncreaseQuantity} onmousedown={stopPropagation}>+</button>
                                     </div>
-                                    <button data-id={item.id} onclick={addToCart}>עדכן עגלה</button>
+                                    <button data-id={item.id} onclick={addToCart} onmousedown={stopPropagation}>עדכן עגלה</button>
                                     </div>
                                 </template>
                             </li>
