@@ -683,6 +683,7 @@ h3{
     padding: 1.5rem;
     text-align: center;
     ;
+   
   }
   
   .garden-gallery h2 {
@@ -1026,6 +1027,7 @@ h3{
     list-style: none;
     padding: 0;
     margin: 0;
+    justify-items: center;
 }
 
 .alcohol-menu-list li {
@@ -1033,7 +1035,6 @@ h3{
     font-size: 1.2rem;
     margin-bottom: 15px;
     text-align: right;
-    justify-items: center;
 }
 
 .checkout-button {
@@ -1065,6 +1066,27 @@ h3{
   .gallery-grid img.square {
     height: 400px;
   }
+
+ .garden-gallery{
+    padding: 1.5rem;
+    text-align: center;
+    justify-content: center;
+    padding-top: 120px;
+    padding-bottom: 60px;
+ }
+
+  .sub-text{
+    font-size: 1.8rem;
+    color: #555;
+    margin-bottom: 2rem;
+  }
+
+  .garden-gallery h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #263056;
+    font-family: "Amatic SC", sans-serif;
+}
 
   .reserve-btn {
     margin-top: 2rem;
