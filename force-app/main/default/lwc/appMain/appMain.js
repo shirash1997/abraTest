@@ -59,6 +59,10 @@ export default class AppMain extends LightningElement {
     get isGallery() {
         return this.currentPage === 'gallery';
       } 
+      
+    get isAboutUs() {
+        return this.currentPage === 'aboutus';
+      }
 
     handleAddToCart(event) {
         const newItem = event.detail;
