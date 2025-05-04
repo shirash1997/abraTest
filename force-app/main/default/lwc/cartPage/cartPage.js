@@ -12,5 +12,10 @@ export default class CartPage extends LightningElement {
         connectedCallback(){
             console.log('📦 cartItems: ', JSON.stringify(this.cartItems));
         }
-    
+
+        handleCheckout() {
+            // כאן אפשר להחליף לניווט אמיתי או שליחת אירוע
+            alert('עוברים לתשלום...');
+            // this.dispatchEvent(new CustomEvent('checkout'));
+        }
 }

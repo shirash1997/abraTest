@@ -1,29 +1,34 @@
 <template>
     <div class="cart-wrapper">
         <div class="cart-container">
-        <h2 class="cart-title">🛒 עגלה</h2>
-        
-        <template if:true={cartItems.length}>
-            <ul class="cart-list">
-                <template for:each={cartItems} for:item="item">
-                    <li key={item.id} class="cart-item">
-                        <div class="cart-row">
-                            <img src={item.image} alt={item.name} class="cart-item-image"/>
-                            <div class="cart-item-details"> <!-- שימי לב לזה -->
-                                <span class="coffee-name">{item.name}</span>
-                                <span class="coffee-quantity">כמות: {item.quantity}</span>
-                                <span class="coffee-price">מחיר כולל: {item.totalPrice} ₪</span>
+            <h2 class="cart-title">🛒 עגלה</h2>
+
+            <template if:true={cartItems.length}>
+                <ul class="cart-list">
+                    <template for:each={cartItems} for:item="item">
+                        <li key={item.id} class="cart-item">
+                            <div class="cart-row">
+                                <img src={item.image} alt={item.name} class="cart-item-image" />
+                                <div class="cart-item-details">
+                                    <span class="coffee-name">{item.name}</span>
+                                    <span class="coffee-quantity">כמות: {item.quantity}</span>
+                                    <span class="coffee-price">מחיר כולל: {item.totalPrice} ₪</span>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </template>
-            </ul>
-            <h3>סה"כ לתשלום: {totalPrice} ₪</h3>
-        </template>
-        
-        <template if:false={cartItems.length}>
-            <p>העגלה שלך ריקה! 😢</p>
-        </template>
+                        </li>
+                    </template>
+                </ul>
+                <h3>סה"כ לתשלום: {totalPrice} ₪</h3>
+
+                <!-- 🔵 כפתור המשך לתשלום -->
+                <div class="checkout-button-wrapper">
+                    <button class="checkout-button" onclick={handleCheckout}>המשך לתשלום</button>
+                </div>
+            </template>
+
+            <template if:false={cartItems.length}>
+                <p>העגלה שלך ריקה! 😢</p>
+            </template>
+        </div>
     </div>
-</div>
 </template>

@@ -44,5 +44,7 @@ export default class HamburgerMenu extends LightningElement {
         this.toggleHamburgerMenu();
     }
 
+    
+
 
 }

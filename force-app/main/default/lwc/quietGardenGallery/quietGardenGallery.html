@@ -1,0 +1,23 @@
+<template>
+    <section class="garden-gallery">
+      <h2>🍃 קפה בשקט – רגעים מהגינה שלנו</h2>
+      <p class="sub-text">
+        פה תמצאו שלווה ירוקה, חיבורים שקטים בין קפה, לפטופ וצמחייה.  
+        המרחב שבו ניו יורק עוצרת לנשום.
+      </p>
+  
+      <div class="gallery-grid">
+        <img src={img1} alt="עבודה רגועה בלב הירוק" class="tall" onclick={openLightbox1} />
+        <img src={img2} alt="פינה שקטה עם קרני שמש" class="tall" onclick={openLightbox2} />
+        <img src={img3} alt="שולחן בגינה עם קפה וגרלנדה" class="square" onclick={openLightbox3} />
+      </div>
+  
+      <template if:true={isLightboxOpen}>
+        <div class="lightbox" onclick={closeLightbox}>
+          <img src={lightboxImage} class="lightbox-image" onclick={stopPropagation} />
+          <span class="close-btn" onclick={closeLightbox}>×</span>
+        </div>
+      </template>
+    </section>
+  </template>
+  

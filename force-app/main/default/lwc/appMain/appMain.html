@@ -16,6 +16,8 @@
             <template if:true={isTAPage}>
                 <c-ta-page is-ta-page={isTAPage}></c-ta-page>
             </template>
-        
+            <template if:true={isLaptopPage}>
+                <c-quiet-garden-gallery></c-quiet-garden-gallery>
+            </template>
             <c-footer></c-footer>
 </template>

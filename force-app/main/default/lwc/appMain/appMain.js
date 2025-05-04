@@ -5,6 +5,8 @@ export default class AppMain extends LightningElement {
     @track isTaPage = false;
     @track cartItems = [];
 
+    
+
 
     connectedCallback() {
         this.handleNavigation();
@@ -48,6 +50,10 @@ export default class AppMain extends LightningElement {
 
     get isTAPage(){
         return this.currentPage === 'ta'; 
+    }
+
+    get isLaptopPage(){
+        return this.currentPage === 'laptop'; 
     }
 
     handleAddToCart(event) {
