@@ -814,29 +814,36 @@ h3{
     padding: 2rem 1rem;
     text-align: center;
     direction: rtl;
+    padding-top: 120px;
+    padding-bottom: 60px;
 }
 .about-title {
     font-size: 2rem;
-    color: #4B3F2F;
+    color: #263056;
     margin-bottom: 1rem;
+    font-family: "Amatic SC", sans-serif;
+
 }
 .about-text {
     font-size: 1.1rem;
-    color: #333;
+    color: #263056;
     line-height: 1.8;
     margin-bottom: 2rem;
+    font-family: "Amatic SC", sans-serif;
 }
 .about-image {
     max-width: 100%;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     margin-bottom: 2rem;
+    
 }
 .about-values {
     list-style: none;
     padding: 0;
     margin: 0;
-    color: #555;
+    color: #263056;;
+    font-family: "Amatic SC", sans-serif;
 }
 .about-values li {
     font-size: 1rem;

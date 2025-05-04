@@ -59,8 +59,8 @@ export default class AppMain extends LightningElement {
     get isGallery() {
         return this.currentPage === 'gallery';
       } 
-      
-    get isAboutUs() {
+
+    get isAboutUsPage() {
         return this.currentPage === 'aboutus';
       }
 
