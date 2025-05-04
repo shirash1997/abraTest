@@ -12,10 +12,35 @@
         <img src={img3} alt="שולחן בגינה עם קפה וגרלנדה" class="square" onclick={openLightbox3} />
       </div>
   
+      <button class="reserve-btn" onclick={openReservationModal}>הזמן מקום בגינה</button>
+  
+      <!-- Lightbox -->
       <template if:true={isLightboxOpen}>
         <div class="lightbox" onclick={closeLightbox}>
           <img src={lightboxImage} class="lightbox-image" onclick={stopPropagation} />
           <span class="close-btn" onclick={closeLightbox}>×</span>
+        </div>
+      </template>
+  
+      <!-- Modal -->
+      <template if:true={isModalOpen}>
+        <div class="modal-overlay" onclick={closeModal}>
+          <div class="modal-content" onclick={stopPropagation}>
+            <span class="close-btn" onclick={closeModal}>×</span>
+            <h3>הזמן מקום</h3>
+            <form class="reservation-form" onsubmit={handleSubmit}>
+                <input type="text" placeholder="שם מלא" required />
+              
+                <label for="date">בחר תאריך</label>
+                <input type="date" id="date" name="date" lang="he" dir="rtl" required />
+              
+                <label for="time">בחר שעה</label>
+                <input type="time" id="time" name="time" lang="he" dir="rtl" step="1800" required />
+              
+                <button type="submit">שלח</button>
+              </form>
+              
+          </div>
         </div>
       </template>
     </section>
