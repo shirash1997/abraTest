@@ -44,7 +44,10 @@ export default class HamburgerMenu extends LightningElement {
         this.toggleHamburgerMenu();
     }
 
-    
+    navigateToGallery() {
+        this.dispatchEvent(new CustomEvent('navigation', { detail: 'gallery' }));
+        this.toggleHamburgerMenu();
+    }
 
 
 }

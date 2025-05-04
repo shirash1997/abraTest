@@ -56,6 +56,10 @@ export default class AppMain extends LightningElement {
         return this.currentPage === 'laptop'; 
     }
 
+    get isGallery() {
+        return this.currentPage === 'gallery';
+      } 
+
     handleAddToCart(event) {
         const newItem = event.detail;
         console.log('new item on main app: '+newItem);

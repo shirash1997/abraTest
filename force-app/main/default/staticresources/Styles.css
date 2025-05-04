@@ -679,12 +679,14 @@ h3{
     transform: scale(1.03);
 }
 
-.garden-gallery {
+.garden-gallery{
     padding: 1.5rem;
     text-align: center;
-    ;
-   
-  }
+    justify-content: center;
+    padding-top: 120px;
+    padding-bottom: 60px;
+    background-color: #EFEDD8
+ }
   
   .garden-gallery h2 {
     font-size: 1.8rem;
@@ -724,7 +726,7 @@ h3{
     margin-top: 2rem;
     padding: 0.8rem 1.5rem;
     background-color: #3c2a21;
-    color: #fff;
+    color: #EFEDD8;
     font-size: 1.1rem;
     border: none;
     border-radius: 24px;
@@ -1077,7 +1079,7 @@ h3{
 
   .sub-text{
     font-size: 1.8rem;
-    color: #555;
+    color: #263056;
     margin-bottom: 2rem;
   }
 
@@ -1091,7 +1093,7 @@ h3{
   .reserve-btn {
     margin-top: 2rem;
     background-color: rgb(60, 42, 33);
-    color: rgb(255, 255, 255);
+    color: #EFEDD8;
     font-size: 1.8rem;
     cursor: pointer;
     padding: 0.8rem 1.5rem;

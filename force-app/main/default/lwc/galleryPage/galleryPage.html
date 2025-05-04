@@ -1,0 +1,20 @@
+<template>
+    <section class="garden-gallery">
+      <h2>🎞️ גלריית הקפה והמאפים</h2>
+      <p class="sub-text">מבחר רגעים מהמטבח שלנו – קפה, שוקולד וריחות של ניו יורק.</p>
+  
+      <div class="gallery-grid">
+        <template for:each={images} for:item="img">
+          <img key={img.src} src={img.src} alt={img.alt} onclick={openLightbox} />
+        </template>
+      </div>
+  
+      <template if:true={isLightboxOpen}>
+        <div class="lightbox" onclick={closeLightbox}>
+          <img src={lightboxImage} class="lightbox-image" onclick={stopPropagation} />
+          <span class="close-btn" onclick={closeLightbox}>×</span>
+        </div>
+      </template>
+    </section>
+  </template>
+  
