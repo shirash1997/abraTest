@@ -1,0 +1,16 @@
+<template>
+    <template if:true={showModal}>
+        <div class="modal-overlay" onclick={closeModal}>
+            <div class="modal-content" onclick={stopPropagation}>
+                <span class="close-btn" onclick={closeModal}>×</span>
+                <h3>המשך לתשלום</h3>
+                <form class="reservation-form" onsubmit={handleSubmit}>
+                    <input type="text" placeholder="שם מלא" name="fullName" required />
+                    <input type="email" placeholder="אימייל" name="email" required />
+                    <input type="tel" placeholder="טלפון" name="phone" required />
+                    <button type="submit">בצע הזמנה</button>
+                </form>
+            </div>
+        </div>
+    </template>
+</template>
