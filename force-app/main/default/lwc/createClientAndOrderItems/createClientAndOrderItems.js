@@ -1,5 +1,5 @@
 import { LightningElement, api } from 'lwc';
-import createClientAndOrderItems from '@salesforce/apex/CartCheckoutController.createClientAndOrderItems';
+import processGuestCheckout from '@salesforce/apex/CartCheckoutController.processGuestCheckout';
 
 export default class ClientInfoModal extends LightningElement {
     @api cartItems = [];
@@ -16,25 +16,34 @@ export default class ClientInfoModal extends LightningElement {
 
     handleSubmit(event) {
         event.preventDefault();
-        const fields = event.target;
 
+        const fields = event.target.elements;
         const fullName = fields.fullName.value;
         const email = fields.email.value;
         const phone = fields.phone.value;
 
-        createClientAndOrderItems({
+        // הכנה של עגלת פריטים בפורמט מתאים ל־DTO
+        const formattedCartItems = this.cartItems.map(item => ({
+            name: item.name,
+            quantity: item.quantity,
+            unitPrice: item.price,
+            total: item.totalPrice
+
+        }));
+
+        processGuestCheckout({
             name: fullName,
             email: email,
             phone: phone,
-            cartItems: this.cartItems
+            cartItems: formattedCartItems
         })
         .then(() => {
-            alert('ההזמנה נשלחה בהצלחה! ✨');
+            alert('✨ ההזמנה בוצעה בהצלחה!');
             this.closeModal();
         })
         .catch(error => {
             console.error('שגיאה בשליחת הזמנה:', error);
-            alert('אירעה שגיאה בשליחה.');
+            alert('⚠️ אירעה שגיאה בעת שליחת ההזמנה.');
         });
     }
 }
