@@ -3,16 +3,13 @@ import { LightningElement, api, track } from 'lwc';
 export default class CartPage extends LightningElement {
     @api cartItems; // רשימת הפריטים שנשלחים לעגלה
     @track showCustomerPopup = false;
-
+    @track showModal = false;
     get totalPrice() {
         return this.cartItems.reduce((total, item) => total + item.totalPrice, 0);
     }
 
-    showModal = false;
+    
 
-    handleCheckoutClick() {
-        this.showModal = true;
-    }
     
     handleCloseModal() {
         this.showModal = false;
@@ -26,6 +23,7 @@ export default class CartPage extends LightningElement {
         handleCheckout() {
             // כאן אפשר להחליף לניווט אמיתי או שליחת אירוע
             alert('עוברים לתשלום...');
+            this.showModal = true;
             // this.dispatchEvent(new CustomEvent('checkout'));
         }
 

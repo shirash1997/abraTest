@@ -19,7 +19,6 @@
                     </template>
                 </ul>
                 <h3>סה"כ לתשלום: {totalPrice} ₪</h3>
-                <c-client-info-modal cart-items={cartItems} show-modal={showModal} onclosemodal={handleCloseModal}></c-client-info-modal>
 
                 <!-- 🔵 כפתור המשך לתשלום -->
                 <div class="checkout-button-wrapper">
@@ -32,4 +31,11 @@
             </template>
         </div>
     </div>
+    <template if:true={showModal}>
+        <c-create-client-and-order-items
+            cart-items={cartItems}
+            show-modal
+            onclosemodal={handleCloseModal}>
+        </c-create-client-and-order-items>
+    </template>
 </template>

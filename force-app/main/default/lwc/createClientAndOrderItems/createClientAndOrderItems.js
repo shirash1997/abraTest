@@ -1,7 +1,7 @@
 import { LightningElement, api } from 'lwc';
 import processGuestCheckout from '@salesforce/apex/CartCheckoutController.processGuestCheckout';
 
-export default class ClientInfoModal extends LightningElement {
+export default class createClientAndOrderItems extends LightningElement {
     @api cartItems = [];
     @api showModal = false;
 
