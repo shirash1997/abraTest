@@ -134,31 +134,47 @@ export default class MenuPage extends LightningElement {
 
     addToCart(event) {
         const itemId = parseInt(event.target.dataset.id, 10);
-        
+    
         const selectedItem = this.menuSections
             .flatMap(section => section.items)
             .find(item => item.id === itemId);
     
-        if (selectedItem && selectedItem.quantity > 0) {
-            // מוודאים שאנחנו מעבירים רק את הנתונים הנחוצים לעגלה
-            const cartItem = { 
+        if (!selectedItem) return;
+    
+        const existingIndex = this.cart.findIndex(item => item.id === itemId);
+    
+        if (selectedItem.quantity === 0) {
+            // אם הכמות היא 0 – הסר מהעגלה
+            if (existingIndex !== -1) {
+                this.cart.splice(existingIndex, 1);
+                this.cart = [...this.cart]; // טריגר לרנדר
+            }
+        } else {
+            const cartItem = {
                 id: selectedItem.id,
                 name: selectedItem.name,
                 price: selectedItem.price,
                 quantity: selectedItem.quantity,
                 description: selectedItem.description,
                 image: selectedItem.image,
-                totalPrice: selectedItem.price * selectedItem.quantity 
+                totalPrice: selectedItem.price * selectedItem.quantity,
             };
-
-            this.dispatchEvent(new CustomEvent('addtocart', { detail: cartItem }));
     
-
-            console.log('✅ עגלה מעודכנת: ', JSON.stringify(cartItem));
-        } else {
-            alert('🛒 נא לבחור כמות לפני הוספה לעגלה.');
+            if (existingIndex !== -1) {
+                this.cart[existingIndex] = cartItem;
+            } else {
+                this.cart.push(cartItem);
+            }
+    
+            this.cart = [...this.cart]; // טריגר לרנדר
         }
+    
+        // שליחת האירוע עם כל העגלה המעודכנת
+        this.dispatchEvent(new CustomEvent('addtocart', { detail: this.cart }));
+    
+        console.log('🛒 עגלה מעודכנת:', JSON.stringify(this.cart));
     }
+    
     
     stopPropagation = (event) => {
         event.stopPropagation();

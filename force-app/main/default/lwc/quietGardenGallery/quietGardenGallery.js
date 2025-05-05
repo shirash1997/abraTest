@@ -9,19 +9,6 @@ export default class QuietGardenGallery extends LightningElement {
   @track lightboxImage;
   @track isModalOpen = false;
 
-  renderedCallback() {
-    const dateInput = this.template.querySelector('input[type="date"]');
-    const timeInput = this.template.querySelector('input[type="time"]');
-
-    if (dateInput) {
-        dateInput.setAttribute('lang', 'he');
-        dateInput.setAttribute('dir', 'rtl');
-    }
-    if (timeInput) {
-        timeInput.setAttribute('lang', 'he');
-        timeInput.setAttribute('dir', 'rtl');
-    }
-    }
   openLightbox1() { this.lightboxImage = this.img1; this.isLightboxOpen = true; }
   openLightbox2() { this.lightboxImage = this.img2; this.isLightboxOpen = true; }
   openLightbox3() { this.lightboxImage = this.img3; this.isLightboxOpen = true; }
@@ -42,6 +29,7 @@ export default class QuietGardenGallery extends LightningElement {
 
   handleSubmit(event) {
     event.preventDefault();
+    // כאן אפשר לשלב שליחה אמיתית או Toast
     alert('ההזמנה נשלחה! נשמח לראותך 😊');
     this.isModalOpen = false;
   }

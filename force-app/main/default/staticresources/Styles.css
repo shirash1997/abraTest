@@ -16,7 +16,20 @@ c-background-video {
     height: 100%;
     z-index: -1; /* כדי שהווידאו יהיה ברקע */
 }
-
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #EFEDD8; /* צבע הרקע הרצוי */
+    box-sizing: border-box;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
 
 .content-overlay {
     position: absolute;
@@ -1087,15 +1100,29 @@ h3{
     padding: 14px 40px;
 }
 
-    .gallery-grid {
-        column-count: 3;
-    }
-
-  .gallery-grid img.tall {
-    height: 500px;
+.gallery-grid {
+    column-count: 3;
+    column-gap: 1rem;
   }
 
-  .gallery-grid img.square {
+  .gallery-grid img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    break-inside: avoid;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+/* 
+  .gallery-grid img.tall {
+    height: 500px;
+  } */
+
+  /* .gallery-grid img.square {
     height: 400px;
   }
 
@@ -1106,7 +1133,7 @@ h3{
 
   .gallery-grid img.square {
     height: 400px;
-  }
+  } */
 
  .garden-gallery{
     padding: 1.5rem;
@@ -1173,5 +1200,51 @@ h3{
   color: #263056;
   cursor: pointer;
 }
-    
+
+.about-wrapper {
+    background-color: #EFEDD8;
+    padding: 2rem;
+    box-sizing: border-box;
+    width: 100%;
+    padding-top: 120px;
+    padding-bottom: 60px;
+  }
+.about-content {
+    flex-direction: row-reverse; /* תמונה מימין */
+    align-items: flex-start;
+    justify-content: center;
+    text-align: right;
+    gap: 4rem;
+    display: flex
+;
+  }
+
+  .about-image {
+    width: 40%;
+  }
+
+  .about-text-container {
+    width: 50%;
+  }
+
+  .about-title {
+    font-size: 2.5rem;
+    color: #263056;
+    margin-bottom: rem;
+    font-family: "Amatic SC", sans-serif;
+}
+
+  .about-text {
+    font-size: 1.7rem;
+    color: #263056;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    font-family: "Amatic SC", sans-serif;
+}
+
+  .about-values li {
+    font-size: 1.7rem;
+    margin: 0.5rem 0;
+}
+  
 }
