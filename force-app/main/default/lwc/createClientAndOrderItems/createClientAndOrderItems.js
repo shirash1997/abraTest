@@ -1,5 +1,6 @@
 import { LightningElement, api } from 'lwc';
 import processGuestCheckout from '@salesforce/apex/CartCheckoutController.processGuestCheckout';
+import sendOrderEmail from '@salesforce/apex/CafeOrderMailer.sendOrderEmail';
 
 export default class createClientAndOrderItems extends LightningElement {
     @api cartItems = [];
@@ -45,6 +46,13 @@ console.log('totalPrice befor apex : ', this.totalPrice);
             alert('✨ ההזמנה בוצעה בהצלחה!');
             this.closeModal();
             this.dispatchEvent(new CustomEvent('orderplaced', { detail: true}));
+            sendOrderEmail({ orderId: this.createdOrderId, email: this.customerEmail })
+    .then(() => {
+        console.log('📧 מייל נשלח בהצלחה');
+    })
+    .catch(error => {
+        console.error('שגיאה בשליחת מייל:', error);
+    });
 
         })
         .catch(error => {
