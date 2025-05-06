@@ -4,6 +4,7 @@ import processGuestCheckout from '@salesforce/apex/CartCheckoutController.proces
 export default class createClientAndOrderItems extends LightningElement {
     @api cartItems = [];
     @api showModal = false;
+    @api totalPrice;
 
     closeModal() {
         this.showModal = false;
@@ -31,11 +32,14 @@ export default class createClientAndOrderItems extends LightningElement {
 
         }));
 
+        console.log('cart befor apex : ', JSON.stringify(formattedCartItems));
+console.log('totalPrice befor apex : ', this.totalPrice);
         processGuestCheckout({
             name: fullName,
             email: email,
             phone: phone,
-            cartItems: formattedCartItems // ⬅️ כאן היה הבאג
+            cartItems: formattedCartItems,
+            totalPrice: this.totalPrice // ⬅️ כאן היה הבאג
         })
         .then(() => {
             alert('✨ ההזמנה בוצעה בהצלחה!');
