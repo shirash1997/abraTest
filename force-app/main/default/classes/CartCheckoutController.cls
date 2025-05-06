@@ -16,9 +16,9 @@ public with sharing class CartCheckoutController  {
         // יצירת חשבון מסוג Person Account
         Account acc = new Account(
             RecordTypeId = personAccountRecordTypeId,
-            LastName = name, // חובה ב-Person Account
-            Phone = phone,
-            PersonEmail = email
+            Name = name, // חובה ב-Person Account
+            Phone = phone
+          
         );
         insert acc;
 

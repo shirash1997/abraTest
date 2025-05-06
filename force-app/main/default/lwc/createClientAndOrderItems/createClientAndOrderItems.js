@@ -35,7 +35,7 @@ export default class createClientAndOrderItems extends LightningElement {
             name: fullName,
             email: email,
             phone: phone,
-            cartItems: formattedCartItems
+            cartItems: formattedCartItems // ⬅️ כאן היה הבאג
         })
         .then(() => {
             alert('✨ ההזמנה בוצעה בהצלחה!');
