@@ -44,6 +44,8 @@ console.log('totalPrice befor apex : ', this.totalPrice);
         .then(() => {
             alert('✨ ההזמנה בוצעה בהצלחה!');
             this.closeModal();
+            this.dispatchEvent(new CustomEvent('orderplaced', { detail: true }));
+
         })
         .catch(error => {
             console.error('שגיאה בשליחת הזמנה:', error);

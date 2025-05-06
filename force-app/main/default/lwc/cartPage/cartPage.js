@@ -4,6 +4,7 @@ export default class CartPage extends LightningElement {
     @api cartItems; // רשימת הפריטים שנשלחים לעגלה
     @track showCustomerPopup = false;
     @track showModal = false;
+    @track orderPlaced = false;
     get totalPrice() {
         return this.cartItems.reduce((total, item) => total + item.totalPrice, 0);
     }
@@ -36,5 +37,10 @@ export default class CartPage extends LightningElement {
             console.log('📦 פרטי לקוח:', name, email, phone);
     
             // כאן תקראי ל-Apex עם cartItems ופרטים נוספים
+        }
+
+        handleOrderPlaced(event) {
+            this.orderPlaced = event.detail;
+            console.log('ההזמנה בוצעה:', this.orderPlaced);
         }
 }

@@ -1,4 +1,5 @@
 <template>
+    <template if:false={orderPlaced}>
     <div class="cart-wrapper">
         <div class="cart-container">
             <h2 class="cart-title">🛒 עגלה</h2>
@@ -27,16 +28,28 @@
             </template>
 
             <template if:false={cartItems.length}>
-                <p>העגלה שלך ריקה! 😢</p>
+                <p class="order-confirmation-text">העגלה שלך ריקה! 😢</p>
             </template>
         </div>
     </div>
     <template if:true={showModal}>
         <c-create-client-and-order-items
             cart-items={cartItems}
+            onorderplaced={handleOrderPlaced}
             show-modal
             total-price={totalPrice}
             onclosemodal={handleCloseModal}>
         </c-create-client-and-order-items>
     </template>
+    </template>
+    <template if:true={orderPlaced}>
+        <div class="cart-wrapper">
+            <div class="cart-container">
+        <p class="order-confirmation-text">
+            תודה על ההזמנה! <br />
+            ההזמנה שלך בוצעה בהצלחה. <br />
+            ניצור איתך קשר בהקדם.
+        </p>
+        </div>
+        </div>
 </template>
