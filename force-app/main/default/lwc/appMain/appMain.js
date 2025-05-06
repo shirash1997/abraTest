@@ -4,6 +4,7 @@ export default class AppMain extends LightningElement {
     @track currentPage = 'home';
     @track isTaPage = false;
     @track cartItems = [];
+    @track orderplaced = false;
 
     
 
@@ -69,6 +70,18 @@ export default class AppMain extends LightningElement {
         this.cartItems = [...event.detail];
 
         console.log('🛒 עגלה מעודכנת: ', JSON.stringify(this.cartItems));
+        const menuComponent = this.template.querySelector('c-menu-component');
+        if (menuComponent) {
+            menuComponent.resetOrderPlaced();
+        }
     }
 
+    get orderPlaced(){
+        return this.orderplaced;
+    }
+
+    handleOrderPlaced(event) {
+     this.orderplaced = event.detail;
+     console.log(' בראשי ההזמנה בוצעה:', this.orderplaced);
+}
 }

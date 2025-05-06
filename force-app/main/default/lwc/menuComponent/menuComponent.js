@@ -6,10 +6,13 @@ import logo from '@salesforce/resourceUrl/MidnightBrewLogo';
 export default class MenuComponent extends LightningElement {
     logoUrl = logo;
     @api cartItems = [];
+    @api orderPlaced = false;
 
 
     connectedCallback(){
         loadStyle(this, Styles);
+        this.addEventListener('orderplaced', this.handleOrderPlaced.bind(this));
+        
     }
 
     navigateToHome() {
@@ -30,5 +33,16 @@ export default class MenuComponent extends LightningElement {
         return this.cartItems.reduce((total, item) => total + item.quantity, 0);
     }
 
+  
+
+    get showCartBadge() {
+        console.log('order placed in menu component '+this.orderPlaced);
+        return !this.orderPlaced;
+    }
+
+    @api
+    resetOrderPlaced() {
+        this.orderPlaced = false;
+    }
 
 }

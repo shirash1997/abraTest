@@ -6,8 +6,10 @@
                 <li onclick={navigateToMenu} class="nav-link">תפריט</a></li>
                 <li onclick={navigateToCart} class="nav-link cart-icon-container">
                     🛒
+                    <template if:true={showCartBadge}>
                     <template if:true={cartTotalQuantity}>
                         <span class="cart-badge">{cartTotalQuantity}</span>
+                    </template>
                     </template>
                 </li>
             </ul>

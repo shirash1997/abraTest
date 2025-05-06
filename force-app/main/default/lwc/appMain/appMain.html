@@ -1,5 +1,5 @@
 <template>
-            <c-menu-component onnavigation={handleNavigation} onaddtocart={handleAddToCart} cart-items={cartItems}></c-menu-component>
+            <c-menu-component onnavigation={handleNavigation} onaddtocart={handleAddToCart} cart-items={cartItems} order-placed={orderPlaced} ></c-menu-component>
             <c-hamburger-menu onnavigation={handleNavigation}></c-hamburger-menu>
             <template if:true={isHomePage}>
                 <c-home-page></c-home-page>
@@ -8,7 +8,7 @@
                 <c-menu-page is-ta-page={isTAPage} onaddtocart={handleAddToCart}></c-menu-page>
             </template>
             <template if:true={isCartPage}>
-                <c-cart-page cart-items={cartItems} ></c-cart-page>
+                <c-cart-page cart-items={cartItems} onorderplaced={handleOrderPlaced} ></c-cart-page>
             </template>
             <template if:true={isMusicPage}>
                 <c-music-page></c-music-page>

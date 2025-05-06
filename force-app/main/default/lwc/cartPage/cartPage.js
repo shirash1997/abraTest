@@ -42,5 +42,6 @@ export default class CartPage extends LightningElement {
         handleOrderPlaced(event) {
             this.orderPlaced = event.detail;
             console.log('ההזמנה בוצעה:', this.orderPlaced);
+            this.dispatchEvent(new CustomEvent('orderplaced', { detail: true}));
         }
 }
