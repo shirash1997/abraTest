@@ -1,5 +1,6 @@
 import { LightningElement, track } from 'lwc';
 import quietGardenGallery from '@salesforce/resourceUrl/quietGardenGallery';
+import createReservation from '@salesforce/apex/ReservationService.createReservation';
 
 export default class QuietGardenGallery extends LightningElement {
   img1 = `${quietGardenGallery}/GalleryGarden_Optimized/img1.jpg`;
@@ -33,4 +34,25 @@ export default class QuietGardenGallery extends LightningElement {
     alert('ההזמנה נשלחה! נשמח לראותך 😊');
     this.isModalOpen = false;
   }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+    const fullName = this.template.querySelector('input[type="text"]').value;
+    const date = this.template.querySelector('input[type="date"]').value; // YYYY-MM-DD
+    const time = this.template.querySelector('input[type="time"]').value; // HH:MM
+
+    const dateTimeString = `${date}T${time}:00`; // תבנית ISO מלאה
+    const reservationDateTime = new Date(dateTimeString).toISOString(); // הפוך ל־UTC ISO
+
+    createReservation({ fullName, reservationDateTime })
+        .then(() => {
+            alert('ההזמנה נשלחה! נשמח לראותך 😊');
+            this.isModalOpen = false;
+        })
+        .catch(error => {
+            console.error('שגיאה בשליחת ההזמנה:', error);
+            alert('אירעה שגיאה בשליחת ההזמנה. נסה שוב.');
+        });
+}
 }
