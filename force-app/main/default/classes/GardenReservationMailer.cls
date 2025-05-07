@@ -7,8 +7,8 @@ public with sharing class GardenReservationMailer {
         String logoUrl = 'https://abra6-dev-ed.develop.my.salesforce.com/sfc/dist/version/download/?oid=00DWU00000Ed9Zi&ids=068WU000009bbZh&d=%2Fa%2FWU0000004vHR%2FkDnYLp8wqbGqkhQZau0H8vxJpjkxoovA9z_ITqIlzoo&asPdf=false';
 
         // 🔳 יצירת קישור QR להזמנה
-        String qrContent = 'https://midnightbrew.coffee/reservation?id=' + reservationId;
-        String qrUrl = 'https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=' + EncodingUtil.urlEncode(qrContent, 'UTF-8');
+
+        String qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://midnightbrew.coffee/reservation?Id=' + reservationId;
 
         String body =
             '<html><body dir="rtl" style="font-family: Arial, sans-serif; background-color: #f9f6f1; color: #3b3b3b; padding: 20px;">' +
