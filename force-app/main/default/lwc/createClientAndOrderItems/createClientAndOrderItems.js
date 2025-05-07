@@ -1,4 +1,4 @@
-import { LightningElement, api } from 'lwc';
+import { LightningElement, api, track } from 'lwc';
 import processGuestCheckout from '@salesforce/apex/CartCheckoutController.processGuestCheckout';
 import sendOrderEmail from '@salesforce/apex/CafeOrderMailer.sendOrderEmail';
 
@@ -6,6 +6,7 @@ export default class createClientAndOrderItems extends LightningElement {
     @api cartItems = [];
     @api showModal = false;
     @api totalPrice;
+    @track createdOrderId;
 
     closeModal() {
         this.showModal = false;
@@ -35,29 +36,31 @@ export default class createClientAndOrderItems extends LightningElement {
 
         console.log('cart befor apex : ', JSON.stringify(formattedCartItems));
 console.log('totalPrice befor apex : ', this.totalPrice);
-        processGuestCheckout({
-            name: fullName,
-            email: email,
-            phone: phone,
-            cartItems: formattedCartItems,
-            totalPrice: this.totalPrice // ⬅️ כאן היה הבאג
-        })
+processGuestCheckout({
+    name: fullName,
+    email: email,
+    phone: phone,
+    cartItems: formattedCartItems,
+    totalPrice: this.totalPrice
+})
+.then((orderId) => {
+    alert('✨ ההזמנה בוצעה בהצלחה!');
+    this.createdOrderId = orderId;
+    this.closeModal();
+    this.dispatchEvent(new CustomEvent('orderplaced', { detail: true }));
+console.log('ההזמנה בוצעה בהצלחה, מספר הזמנה:', this.createdOrderId);
+    // שליחת מייל
+    sendOrderEmail({ orderId: this.createdOrderId, email: email })
         .then(() => {
-            alert('✨ ההזמנה בוצעה בהצלחה!');
-            this.closeModal();
-            this.dispatchEvent(new CustomEvent('orderplaced', { detail: true}));
-            sendOrderEmail({ orderId: this.createdOrderId, email: this.customerEmail })
-    .then(() => {
-        console.log('📧 מייל נשלח בהצלחה');
-    })
-    .catch(error => {
-        console.error('שגיאה בשליחת מייל:', error);
-    });
-
+            console.log('📧 מייל נשלח בהצלחה');
         })
         .catch(error => {
-            console.error('שגיאה בשליחת הזמנה:', error);
-            alert('⚠️ אירעה שגיאה בעת שליחת ההזמנה.');
+            console.error('שגיאה בשליחת מייל:', error);
         });
+})
+.catch(error => {
+    console.error('שגיאה בשליחת ההזמנה:', error);
+    alert('⚠️ אירעה שגיאה בעת שליחת ההזמנה.');
+});
     }
 }

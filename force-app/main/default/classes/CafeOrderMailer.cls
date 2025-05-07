@@ -29,14 +29,14 @@ public without sharing class CafeOrderMailer {
                 '</tr>'
             );
         }
-        String logoUrl = 'https://abra6-dev-ed.develop.my.salesforce.com.lightning.force.com/resource/MidnightBrewLogo';
+       
 
 
         String body =
             '<html><body dir="rtl" style="font-family: Arial, sans-serif; background-color: #f9f6f1; color: #3b3b3b; padding: 20px;">' +
             '<div style="max-width: 600px; margin: auto; background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">' +
             '<div style="text-align: center;">' +
-            '<img src="' + logoUrl + '" alt="הבית של הקפה" style="max-height: 60px; margin-bottom: 24px;" />' +
+            '<img src="https://abra6-dev-ed.develop.my.salesforce.com/sfc/p/WU00000Ed9Zi/a/WU0000004vAz/OlJBxxlHDKEKjbkwGwj9SD4wlamTdJbspy9fo4lOHBU" alt="הבית של הקפה" style="max-height: 60px; margin-bottom: 24px;" />' +
             '<h2 style="color: #5e473a;">תודה על ההזמנה!</h2>' +
             '<p style="font-size: 16px;">שלום ' + customerName + ',</p>' +
             '<p>ההזמנה שלך התקבלה בהצלחה. הנה הפרטים:</p>' +
@@ -75,7 +75,10 @@ public without sharing class CafeOrderMailer {
         mail.setToAddresses(new String[] { email });
         mail.setSubject('אישור הזמנה - הבית של הקפה');
         mail.setHtmlBody(body);
-
+        List<OrgWideEmailAddress> oweaList = [SELECT Id FROM OrgWideEmailAddress WHERE Address = 'vahav.shira1997@gmail.com' LIMIT 1];
+        if (!oweaList.isEmpty()) {
+            mail.setOrgWideEmailAddressId(oweaList[0].Id);
+        }
         Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
     }
 }

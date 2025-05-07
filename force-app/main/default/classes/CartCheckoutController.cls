@@ -1,7 +1,7 @@
 public without sharing class CartCheckoutController  {
 
     @AuraEnabled
-    public static void processGuestCheckout(String name, String email, String phone, Integer totalPrice,  List<Map<String, Object>> cartItems) {
+    public static Id  processGuestCheckout(String name, String email, String phone, Integer totalPrice,  List<Map<String, Object>> cartItems) {
         if (String.isBlank(name) || String.isBlank(email) || cartItems == null || cartItems.isEmpty()) {
             throw new AuraHandledException('נא למלא את כל הפרטים ולבחור מוצרים לעגלה.');
         }
@@ -54,6 +54,8 @@ system.debug('cart in apex:' + cartItems);
             ));
         }
         insert orderItemsToInsert;
+
+        return order.Id;
     }
     
 
