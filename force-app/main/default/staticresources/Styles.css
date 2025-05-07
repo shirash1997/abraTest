@@ -921,6 +921,15 @@ h3{
     margin-top: 1rem; /* או יותר לפי הצורך */
   }
 
+  .reservation-form > * {
+    margin-bottom: 1rem; /* מרווח אחיד בין כל השדות */
+  }
+  
+  .reservation-form > *:last-child {
+    margin-bottom: 0; /* ביטול רווח תחתון לכפתור */
+  }
+  
+
 @media screen and (min-width: 768px) {
 
 
@@ -1357,6 +1366,7 @@ select {
     font-size: 1.6rem;
     justify-items: right;
     float: right;
+    
   }
 
   .close-btn {
@@ -1366,4 +1376,11 @@ select {
   .reservation-form button {
     margin-top: 1rem; /* או יותר לפי הצורך */
   }
+
+  .reservation-form > * {
+    margin-bottom: 1rem; /* מרווח אחיד בין כל השדות */
+  }
+
+  .reservation-form > *:last-child {
+    margin-bottom: 0;
 }

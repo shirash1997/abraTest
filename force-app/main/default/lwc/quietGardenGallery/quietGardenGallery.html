@@ -1,21 +1,20 @@
 <template>
-
-    <section class="garden-gallery">
-      <template if:false={showThankYou}>
+  <section class="garden-gallery">
+    <template if:false={showThankYou}>
       <h2>🍃 קפה בשקט – רגעים מהגינה שלנו</h2>
       <p class="sub-text">
         פה תמצאו שלווה ירוקה, חיבורים שקטים בין קפה, לפטופ וצמחייה.  
         המרחב שבו ניו יורק עוצרת לנשום.
       </p>
-  
+
       <div class="gallery-grid">
         <img src={img1} alt="עבודה רגועה בלב הירוק" class="tall" onclick={openLightbox1} />
         <img src={img2} alt="פינה שקטה עם קרני שמש" class="tall" onclick={openLightbox2} />
         <img src={img3} alt="שולחן בגינה עם קפה וגרלנדה" class="square" onclick={openLightbox3} />
       </div>
-  
+
       <button class="reserve-btn" onclick={openReservationModal}>הזמן מקום בגינה</button>
-  
+
       <!-- Lightbox -->
       <template if:true={isLightboxOpen}>
         <div class="lightbox" onclick={closeLightbox}>
@@ -23,7 +22,7 @@
           <span class="close-btn" onclick={closeLightbox}>×</span>
         </div>
       </template>
-  
+
       <!-- Modal -->
       <template if:true={isModalOpen}>
         <div class="modal-overlay" onclick={closeModal}>
@@ -31,37 +30,39 @@
             <span class="close-btn" onclick={closeModal}>×</span>
             <h3>הזמן מקום</h3>
             <form class="reservation-form" onsubmit={handleSubmit}>
-                <input type="text" data-id="full-name" placeholder="שם מלא" required />
-              
-                <label for="date">בחר תאריך</label>
-                <input type="date" data-id="date" id="date" name="date" lang="he" dir="rtl" required min={todayDate} />
-              
-                <label for="time">בחר שעה</label>
-                <select id="time" data-id="time" name="time" required>
-                  <template for:each={timeSlots} for:item="slot">
-                    <option key={slot} value={slot}>{slot}</option>
-                  </template>
-                </select>
-                <label for="guests">מספר אנשים</label>
-                <select id="guests" name="guests" data-id="guest-count" required>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5+</option>
-                </select>              
-                
-                <button type="submit">שלח</button>
-              </form>
-              
+              <input type="text" data-id="full-name" placeholder="שם מלא" required />
+
+              <label for="date">בחר תאריך</label>
+              <input type="date" data-id="date" id="date" onchange={handleDateChange} min={todayDate} required />
+
+              <label for="time">בחר שעה</label>
+              <select data-id="time" required>
+                <template for:each={timeSlots} for:item="slot">
+                  <option key={slot} value={slot}>{slot}</option>
+                </template>
+              </select>
+
+              <label for="guests">מספר אנשים</label>
+              <select data-id="guest-count" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5+</option>
+              </select>
+              <input type="email" placeholder="אימייל לקבלת אישור" required />
+
+              <button type="submit">שלח</button>
+            </form>
           </div>
         </div>
       </template>
-      </template>
-      <template if:true={showThankYou}>
-        <div class="order-confirmation-text">
-          🌿 תודה על ההזמנה! נשמח לארח אותך בגינה שלנו.
-        </div>
-      </template>
-    </section>
-  </template>
+    </template>
+
+    <template if:true={showThankYou}>
+      <div class="order-confirmation-text">
+        🌿 תודה על ההזמנה! נשמח לארח אותך בגינה שלנו.
+      </div>
+    </template>
+  </section>
+</template>
