@@ -9,12 +9,32 @@ export default class QuietGardenGallery extends LightningElement {
   @track isLightboxOpen = false;
   @track lightboxImage;
   @track isModalOpen = false;
+  @track showThankYou;
+  @track timeSlots = [];
+
 
   openLightbox1() { this.lightboxImage = this.img1; this.isLightboxOpen = true; }
   openLightbox2() { this.lightboxImage = this.img2; this.isLightboxOpen = true; }
   openLightbox3() { this.lightboxImage = this.img3; this.isLightboxOpen = true; }
 
   closeLightbox() { this.isLightboxOpen = false; this.lightboxImage = null; }
+
+  connectedCallback() {
+    this.generateTimeSlots();
+  }
+  
+  generateTimeSlots() {
+    const startHour = 8;
+    const endHour = 24;
+    const slots = [];
+  
+    for (let hour = startHour; hour < endHour; hour++) {
+      slots.push(`${hour.toString().padStart(2, '0')}:00`);
+      slots.push(`${hour.toString().padStart(2, '0')}:30`);
+    }
+  
+    this.timeSlots = slots;
+  }
 
   openReservationModal() {
     this.isModalOpen = true;
@@ -28,31 +48,36 @@ export default class QuietGardenGallery extends LightningElement {
     event.stopPropagation();
   }
 
+
   handleSubmit(event) {
     event.preventDefault();
-    // כאן אפשר לשלב שליחה אמיתית או Toast
-    alert('ההזמנה נשלחה! נשמח לראותך 😊');
-    this.isModalOpen = false;
+  
+    const fullNameInput = this.template.querySelector('input[type="text"]');
+    const dateInput = this.template.querySelector('input[type="date"]');
+    const timeSelect = this.template.querySelector('select');
+  
+    if (!fullNameInput || !dateInput || !timeSelect) {
+      console.error('אלמנט אחד או יותר לא נמצא בטופס');
+      return;
+    }
+  
+    const fullName = fullNameInput.value;
+    const date = dateInput.value;
+    const time = timeSelect.value;
+  
+    const dateTimeString = `${date}T${time}:00`;
+    const reservationDateTime = new Date(dateTimeString).toISOString();
+    const guestCount = this.template.querySelector('[data-id="guest-count"]').value;
+
+    createReservation({ fullName, reservationDateTime, guestCount })
+      .then(() => {
+        this.isModalOpen = false;
+        this.showThankYou = true;
+      })
+      .catch(error => {
+        console.error('שגיאה בשליחת ההזמנה:', error);
+        alert('אירעה שגיאה בשליחת ההזמנה. נסה שוב.');
+      });
   }
-
-  handleSubmit(event) {
-    event.preventDefault();
-
-    const fullName = this.template.querySelector('input[type="text"]').value;
-    const date = this.template.querySelector('input[type="date"]').value; // YYYY-MM-DD
-    const time = this.template.querySelector('input[type="time"]').value; // HH:MM
-
-    const dateTimeString = `${date}T${time}:00`; // תבנית ISO מלאה
-    const reservationDateTime = new Date(dateTimeString).toISOString(); // הפוך ל־UTC ISO
-
-    createReservation({ fullName, reservationDateTime })
-        .then(() => {
-            alert('ההזמנה נשלחה! נשמח לראותך 😊');
-            this.isModalOpen = false;
-        })
-        .catch(error => {
-            console.error('שגיאה בשליחת ההזמנה:', error);
-            alert('אירעה שגיאה בשליחת ההזמנה. נסה שוב.');
-        });
-}
+  
 }

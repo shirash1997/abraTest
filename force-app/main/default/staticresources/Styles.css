@@ -896,6 +896,31 @@ h3{
     object-fit: contain;
   }
 
+  select {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 1.1rem;
+    font-family: "Amatic SC", sans-serif;
+    background-color: white;
+    color: #263056;
+    direction: rtl;
+  }
+
+
+  .reservation-form input,
+  .reservation-form select,
+  .reservation-form button,
+  .reservation-form label {
+    justify-items: right;
+    float: right;
+  }
+
+  .reservation-form button {
+    margin-top: 1rem; /* או יותר לפי הצורך */
+  }
+
 @media screen and (min-width: 768px) {
 
 
@@ -1309,4 +1334,36 @@ h3{
     font-family: "Amatic SC", sans-serif;
     direction: rtl;
 }  
+
+select {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 1.7rem;
+    font-family: "Amatic SC", sans-serif;
+    background-color: white;
+    color: #263056;
+    direction: rtl;
+  }
+  .modal-content h3 {
+    font-size: 2.8rem;
+  }
+
+  .reservation-form input,
+  .reservation-form select,
+  .reservation-form button,
+  .reservation-form label {
+    font-size: 1.6rem;
+    justify-items: right;
+    float: right;
+  }
+
+  .close-btn {
+    font-size: 2rem;
+  }
+
+  .reservation-form button {
+    margin-top: 1rem; /* או יותר לפי הצורך */
+  }
 }

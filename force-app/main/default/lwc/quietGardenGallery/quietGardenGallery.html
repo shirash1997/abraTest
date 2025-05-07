@@ -1,5 +1,7 @@
 <template>
+
     <section class="garden-gallery">
+      <template if:false={showThankYou}>
       <h2>🍃 קפה בשקט – רגעים מהגינה שלנו</h2>
       <p class="sub-text">
         פה תמצאו שלווה ירוקה, חיבורים שקטים בין קפה, לפטופ וצמחייה.  
@@ -29,18 +31,36 @@
             <span class="close-btn" onclick={closeModal}>×</span>
             <h3>הזמן מקום</h3>
             <form class="reservation-form" onsubmit={handleSubmit}>
-                <input type="text" placeholder="שם מלא" required />
+                <input type="text" data-id="full-name" placeholder="שם מלא" required />
               
                 <label for="date">בחר תאריך</label>
-                <input type="date" id="date" name="date" lang="he" dir="rtl" required />
+                <input type="date" data-id="date" id="date" name="date" lang="he" dir="rtl" required min={todayDate} />
               
                 <label for="time">בחר שעה</label>
-                <input type="time" id="time" name="time" lang="he" dir="rtl" step="1800" required />
-              
+                <select id="time" data-id="time" name="time" required>
+                  <template for:each={timeSlots} for:item="slot">
+                    <option key={slot} value={slot}>{slot}</option>
+                  </template>
+                </select>
+                <label for="guests">מספר אנשים</label>
+                <select id="guests" name="guests" data-id="guest-count" required>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5+</option>
+                </select>              
+                
                 <button type="submit">שלח</button>
               </form>
               
           </div>
+        </div>
+      </template>
+      </template>
+      <template if:true={showThankYou}>
+        <div class="order-confirmation-text">
+          🌿 תודה על ההזמנה! נשמח לארח אותך בגינה שלנו.
         </div>
       </template>
     </section>
