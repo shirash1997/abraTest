@@ -11,12 +11,12 @@
       customer-name={customerName}
       onrequestsubmit={handleRequestSubmit}>
     </c-menu-section>
-  
-      <c-order-summary
-        orders={orders}
-        current-customer-name={customerName}
-        onreset={handleResetOrders}
-      ></c-order-summary>
+    
+    <c-order-summary
+      orders={orders}
+      current-customer-name={customerName}
+      onreset={handleResetOrders}>
+    </c-order-summary>
     </div>
   </template>
   

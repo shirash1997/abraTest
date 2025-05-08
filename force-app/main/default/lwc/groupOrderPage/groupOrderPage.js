@@ -2,7 +2,7 @@ import { LightningElement, track } from 'lwc';
 import StylesOrderGroup from '@salesforce/resourceUrl/StylesOrderGroup';
 import { loadStyle } from 'lightning/platformResourceLoader';
 
-import getOrders from '@salesforce/apex/GroupOrderController.getOrders';
+// import getOrders from '@salesforce/apex/GroupOrderController.getOrders';
 import saveOrders from '@salesforce/apex/GroupOrderController.saveOrders';
 
 export default class GroupOrderPage extends LightningElement {
@@ -12,7 +12,7 @@ export default class GroupOrderPage extends LightningElement {
 
   connectedCallback() {
     loadStyle(this, StylesOrderGroup);
-    this.fetchOrders(); // שליפה ידנית בעת עליית הקומפוננטה
+    // this.fetchOrders(); // שליפת כל ההזמנות עם עליית הקומפוננטה
   }
 
   fetchOrders() {
@@ -52,25 +52,24 @@ export default class GroupOrderPage extends LightningElement {
       return;
     }
 
+    const payload = items.map(i => ({
+      dish: i.label,
+      price: i.price
+    }));
+
+    console.log('הזמנה נשלחת:', JSON.stringify(payload));
+
     try {
-        console.log('הזמנה נשלחה:', JSON.stringify(items));
-        await saveOrders(
-            this.customerName,
-            items.map(i => ({
-              dish: i.label,
-              price: i.price
-            }))
-          );
-          
-      this.fetchOrders(); // שליפה מחדש לאחר שמירה
+      await saveOrders(this.customerName, payload);
+      console.log('✅ ההזמנה נשמרה בהצלחה');
+    //   this.fetchOrders(); // רענון ההזמנות לאחר שליחה
     } catch (error) {
-      console.error('שגיאה בשמירה:', error);
+      console.error('❌ שגיאה בשמירת ההזמנה:', error);
       alert('אירעה שגיאה בשמירת ההזמנה, נסו שוב מאוחר יותר');
     }
   }
 
   handleResetOrders() {
-    // זה איפוס מקומי בלבד – נפרד אם תרצי גם Apex למחיקה מלאה
     this.orders = [];
   }
 }
