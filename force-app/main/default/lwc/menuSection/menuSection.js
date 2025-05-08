@@ -75,68 +75,143 @@ export default class MenuSection extends LightningElement {
       { label: "ויינשטפן", price: 38 },
     
       // Draft Beer
-      { label: "גולדסטאר", price: 32 }, // כנראה יש כוס/חצי, בחרתי הנמוך
-      { label: "מוֹנְטי", price: 36 },
+      { label: "גולדסטאר", price: 32 },
+      { label: "גולדסטאר (גדול)", price: 36 },
+      { label: "מורטי", price: 36 },
+      { label: "מורטי (גדול)", price: 42 },
     
-      // Cocktails
-      { label: "מרגריטה קזן", price: 62 },
-      { label: "ג'ינג'ר מוחיטו", price: 62 },
-      { label: "ספייסי מרגריטה", price: 62 },
-      { label: "קזן ג'ולפ", price: 58 },
-      { label: "פיץ' אפרול", price: 62 },
-      { label: "בלונד קוסמו", price: 58 },
-      { label: "ויולט K", price: 62 },
     
-      // Classic Cocktails
-      { label: "ראסטי נייל", price: 62 },
-      { label: "מוסקו מיול", price: 62 },
-      { label: "בלאדי מרי", price: 62 },
-      { label: "קוסמופוליטן", price: 62 },
-    
-      // Soft Drinks
-      { label: "קוקה קולה", price: 19 },
-      { label: "דיאט קולה", price: 19 },
-      { label: "קולה זירו", price: 19 },
-      { label: "ספרייט ליים", price: 19 },
-      { label: "ספרייט זירו ליים", price: 19 },
-      { label: "פיוז תה", price: 19 },
-      { label: "אקווה פנה", price: 35 },
-      { label: "סאן בנדטו, מים מינרליים", price: 16 },
-      { label: "סאן פלגרינו קטן", price: 18 },
-      { label: "סאן פלגרינו גדול", price: 35 },
-      { label: "נסטי לימון", price: 20 },
-      { label: "טוניק", price: 20 },
-      { label: "ג'ינג'ר אייל", price: 20 },
-      { label: "לימונדה", price: 20 },
-      { label: "אשכולית", price: 20 },
-      { label: "תפוזים", price: 20 }
-    ]
+     // Cocktails
+  { label: "מרגריטה קזן", price: 62 },
+  { label: "ג'ינג'ר מוחיטו", price: 62 },
+  { label: "ספייסי מרגריטה", price: 62 },
+  { label: "קזן ג'ולפ", price: 58 },
+  { label: "פיץ' אפרול", price: 62 },
+  { label: "בלונד קוסמו", price: 58 },
+  { label: "ויולט K", price: 62 },
+
+  // Classic Cocktails
+  { label: "ראסטי נייל", price: 62 },
+  { label: "מוסקו מיול", price: 62 },
+  { label: "נגרוני", price: 62 },
+  { label: "בלאדי מרי", price: 62 },
+  { label: "קוסמופוליטן", price: 62 },
+  { label: "מוחיטו", price: 62 },
+
+  // Soft Drinks
+  { label: "קוקה קולה", price: 19 },
+  { label: "דיאט קוקה קולה", price: 19 },
+  { label: "קולה זירו", price: 19 },
+  { label: "ספרייט ליים", price: 19 },
+  { label: "ספרייט זירו ליים", price: 19 },
+  { label: "פיוז תה", price: 19 },
+  { label: "אקווה פנה", price: 35 },
+  { label: "סן בנדטו, מים מינרליים", price: 16 },
+  { label: "סן פלגרינו קטן", price: 18 },
+  { label: "סן פלגרינו גדול", price: 35 },
+  { label: "נסטי לימון", price: 20 },
+  { label: "טוניק", price: 20 },
+  { label: "ג'ינג'ר אייל", price: 20 },
+  { label: "לימונדה", price: 20 },
+  { label: "אשכולית", price: 20 },
+  { label: "תפוזים", price: 20 }
+]
   };
 
 
   dessertMenu = [
-    { label: 'פאי לימון', price: 34 },
-    { label: 'עוגת גבינה ניו-יורקית', price: 36 },
-    { label: 'שוקולד חם ומריר', price: 32 },
-    { label: 'מאפה תפוחים חם', price: 36 }
+    { label: "שכבות קדז’ף", price: 54 },
+    { label: "פארי שוקולד", price: 59 },
+    { label: "פחזניות אננס", price: 58 },
+    { label: "מוס שוקולד VALRHONA", price: 59 },
+    { label: "סלוף פיסטוק", price: 52 },
+    { label: "פנקוטה מיכל", price: 59 },
+  
+    // Digestif (עיכול)
+    { label: "לימונצ'לו", price: 38 },
+    { label: "סמבוקה", price: 42 },
+    { label: "פרנו אמריקנו", price: 38 },
+    { label: "ראפאה", price: 38 },
+    { label: "ז'ידאן דה גז’יל", price: 42 },
+    { label: "קוניאק קורווזיה XO", price: 175 }
   ];
 
   wineMenu = [
-    { label: "קאווא, ספרד", price: 42 },
-    { label: "למברוסקו, קוה די ואלי", price: 42 },
-    { label: "רוזה בראנץ', פלדשטיין", price: 58 },
-    { label: "זינפנדל, ברון הרצוג", price: 46 },
-    { label: "סנט בירטריס, פרובנס", price: 52 },
-    { label: "רוסאן, פלדשטיין", price: 56 },
-    { label: "וייט פרנק, טוליפ", price: 56 },
-    { label: "גוורצטרמינר, ירדן", price: 58 },
-    { label: "שרדונה כרם אורגני אדום, ירדן", price: 59 },
-    { label: "מוסקטו, ברטנורא", price: 52 },
-    { label: "פטיט סירה, סגל", price: 54 },
-    { label: "ריחואלה, רמון קזרובה", price: 56 },
-    { label: "מחול הכרמים, בנימינה", price: 58 },
-    { label: "מרלו, ירדן, רמת הגולן", price: 62 },
-    { label: "קברנה סוביניון, ירדן רמת הגולן", price: 72 }
+    // יינות לבנים
+    { label: "שרדונה קברנה גבעות", price: 195 },
+    { label: "שנין בלאן מטר פלטר", price: 240 },
+    { label: "שרדונה כרם אורגני עין אודם ירדן", price: 195 },
+    { label: "שרדונה קצרין ירדן", price: 265 },
+    { label: "שבלי דומיין סן פרי צרפת", price: 320 },
+    { label: "סוביניון בלאן אדם תבור", price: 165 },
+    { label: "פלם בלאן פלם", price: 240 },
+    { label: "סוביניון בלאן גוס ביי ניו זילנד", price: 280 },
+    { label: "סוביניון בלאן ירדן", price: 240 },
+    { label: "מוסקטו ירדן רמת הגולן", price: 160 },
+    { label: "וייט פרנק טוליפ", price: 185 },
+    { label: "גוורצטרמינר ירדן", price: 185 },
+    { label: "ריזלינג בטא ברקן", price: 220 },
+    { label: "מוסקטו טוליפ", price: 165 },
+  
+    // יינות רוזה
+    { label: "רוזה סנט ביאטריס", price: 220 },
+    { label: "זינפנדל ברון הרצוג ארה\"ב", price: 165 },
+    { label: "גרי דה מרסלאן רקנאטי", price: 210 },
+    { label: "רוזה קסטל דומיין דו קסטל", price: 280 },
+    { label: "רוזה מדמוזל", price: 320 },
+    { label: "וין גרי בטא ברקן", price: 220 },
+    { label: "רוזה ירדן", price: 240 },
+  
+    // יינות מבעבעים
+    { label: "למברוסקו קה די ואלי איטליה", price: 140 },
+    { label: "קאווה איבריקה ספרד", price: 140 },
+    { label: "רוזה ברוט הרצוג סלקשן ארה\"ב", price: 240 },
+    { label: "בלנק דה בלאן ירדן רמת הגולן", price: 280 },
+    { label: "רוזה לורן פרייה", price: 975 },
+    { label: "שמפניה ברון רוטשילד", price: 1350 },
+  
+    // יינות אדומים
+    { label: "שורש צרעה", price: 298 },
+    { label: "קומולוס מטר פלטר", price: 240 },
+    { label: "פטיט קסטל דומיין דו קסטל", price: 260 },
+    { label: "יראון הרי גליל", price: 245 },
+    { label: "בלק טוליפ טוליפ", price: 420 },
+    { label: "מחול הכרמים גבעות", price: 195 },
+    { label: "אדום פסגות", price: 260 },
+    { label: "פלם קלאסיקו מלם", price: 250 },
+    { label: "טמפרניו רמון קורדובה ריוחה ספרד", price: 196 },
+    { label: "סירה מיה לוצה", price: 335 },
+    { label: "מרסלאן תבור", price: 240 },
+    { label: "פטיט ורדו מטר פלטר", price: 320 },
+    { label: "פינו נואר ירדן רמת הגולן", price: 245 },
+    { label: "סירה אשכולות שלמים סגל", price: 255 },
+    { label: "פטיט סירה רזרב רקנאטי", price: 245 },
+    { label: "סירה ירדן", price: 258 },
+  
+    // קברנה מרלו יחד ולחוד
+    { label: "קברנה סוביניון סופריור ברקן", price: 425 },
+    { label: "קברנה סוביניון פלטינום ברקן", price: 245 },
+    { label: "קברנה מרלו גמלא השמורה רמת הגולן", price: 165 },
+    { label: "מרלו ירדן רמת הגולן", price: 205 },
+    { label: "קלאסיקו פלם", price: 255 },
+    { label: "מרלו רזרב רקנאטי", price: 245 },
+    { label: "קברנה סוביניון פטיט יו אף סגל", price: 260 },
+    { label: "קברנה סוביניון ירדן", price: 265 },
+    { label: "מרלו כרם אלונה הבשן ירדן", price: 385 },
+  
+    // מהמרתקים והחשובים שלנו
+    { label: "או מדוק ברון דה רוטשילד בורדו", price: 420 },
+    { label: "מיסטי הילס צרעה", price: 520 },
+    { label: "גראנד וין דומיין דו קסטל", price: 495 },
+    { label: "מצדה גבעות", price: 380 },
+    { label: "ספיישל רזרב רקנאטי", price: 395 },
+    { label: "פבילון דה לויל פוייפרה", price: 975 },
+    { label: "שאטו מולין ריץ'", price: 985 },
+    { label: "שאטו לויל פוייפרה", price: 2480 },
+    { label: "שאטו גיסקור מרגו", price: 2850 },
+    { label: "קצרין ירדן", price: 1350 }
+  
+  
   ];
 
   get menuOptions() {

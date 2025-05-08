@@ -2,7 +2,7 @@ import { LightningElement, track } from 'lwc';
 import StylesOrderGroup from '@salesforce/resourceUrl/StylesOrderGroup';
 import { loadStyle } from 'lightning/platformResourceLoader';
 
-// import getOrders from '@salesforce/apex/GroupOrderController.getOrders';
+import getOrders from '@salesforce/apex/GroupOrderController.getOrders';
 import saveOrders from '@salesforce/apex/GroupOrderController.saveOrders';
 
 export default class GroupOrderPage extends LightningElement {
@@ -12,24 +12,24 @@ export default class GroupOrderPage extends LightningElement {
 
   connectedCallback() {
     loadStyle(this, StylesOrderGroup);
-    // this.fetchOrders(); // שליפת כל ההזמנות עם עליית הקומפוננטה
+    this.fetchOrders(); // שליפת כל ההזמנות עם עליית הקומפוננטה
   }
 
-  // fetchOrders() {
-  //   getOrders()
-  //     .then(data => {
-  //       this.orders = data.map(o => ({
-  //         id: o.Id,
-  //         name: o.Name,
-  //         dish: o.Dish__c,
-  //         price: o.Price__c
-  //       }));
-  //     })
-  //     .catch(error => {
-  //       console.error('שגיאה בשליפת ההזמנות:', error);
-  //       alert('אירעה שגיאה בעת שליפת ההזמנות');
-  //     });
-  // }
+  fetchOrders() {
+    getOrders()
+      .then(data => {
+        this.orders = data.map(o => ({
+          id: o.Id,
+          name: o.Name,
+          dish: o.Dish__c,
+          price: o.Price__c
+        }));
+      })
+      .catch(error => {
+        console.error('שגיאה בשליפת ההזמנות:', error);
+        alert('אירעה שגיאה בעת שליפת ההזמנות');
+      });
+  }
 
   handleNameChange(event) {
     this.customerName = event.target.value;
