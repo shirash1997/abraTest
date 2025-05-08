@@ -7,7 +7,12 @@ export default class createClientAndOrderItems extends LightningElement {
     @api showModal = false;
     @api totalPrice;
     @track createdOrderId;
+    @track deliveryType = 'pickup';
 
+
+    get isDelivery() {
+        return this.deliveryType === 'delivery';
+    }
     closeModal() {
         this.showModal = false;
         this.dispatchEvent(new CustomEvent('closemodal'));
@@ -17,6 +22,10 @@ export default class createClientAndOrderItems extends LightningElement {
         event.stopPropagation();
     }
 
+    handleDeliveryChange(event) {
+        this.deliveryType = event.target.value;
+    }
+
     handleSubmit(event) {
         event.preventDefault();
 
@@ -24,43 +33,42 @@ export default class createClientAndOrderItems extends LightningElement {
         const fullName = fields.fullName.value;
         const email = fields.email.value;
         const phone = fields.phone.value;
+        const address = this.isDelivery ? fields.address.value : null;
 
-        // הכנה של עגלת פריטים בפורמט מתאים ל־DTO
         const formattedCartItems = this.cartItems.map(item => ({
             name: item.name,
             quantity: item.quantity,
             unitPrice: item.price,
             total: item.totalPrice
-
         }));
 
-        console.log('cart befor apex : ', JSON.stringify(formattedCartItems));
-console.log('totalPrice befor apex : ', this.totalPrice);
-processGuestCheckout({
-    name: fullName,
-    email: email,
-    phone: phone,
-    cartItems: formattedCartItems,
-    totalPrice: this.totalPrice
-})
-.then((orderId) => {
-    alert('✨ ההזמנה בוצעה בהצלחה!');
-    this.createdOrderId = orderId;
-    this.closeModal();
-    this.dispatchEvent(new CustomEvent('orderplaced', { detail: true }));
-console.log('ההזמנה בוצעה בהצלחה, מספר הזמנה:', this.createdOrderId);
-    // שליחת מייל
-    sendOrderEmail({ orderId: this.createdOrderId, email: email })
+        console.log('🛒 Cart:', JSON.stringify(formattedCartItems));
+        console.log('📦 Delivery Type:', this.deliveryType);
+        console.log('📍 Address:', address);
+
+        processGuestCheckout({
+            name: fullName,
+            email: email,
+            phone: phone,
+            address: address,
+            deliveryType: this.deliveryType,
+            cartItems: formattedCartItems,
+            totalPrice: this.totalPrice
+        })
+        .then((orderId) => {
+        
+            this.createdOrderId = orderId;
+            this.closeModal();
+            this.dispatchEvent(new CustomEvent('orderplaced', { detail: true }));
+
+            return sendOrderEmail({ orderId: orderId, email: email });
+        })
         .then(() => {
             console.log('📧 מייל נשלח בהצלחה');
         })
         .catch(error => {
-            console.error('שגיאה בשליחת מייל:', error);
+            console.error('שגיאה:', error);
+            alert('⚠️ שגיאה בהזמנה או בשליחת מייל');
         });
-})
-.catch(error => {
-    console.error('שגיאה בשליחת ההזמנה:', error);
-    alert('⚠️ אירעה שגיאה בעת שליחת ההזמנה.');
-});
     }
 }

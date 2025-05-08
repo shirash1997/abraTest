@@ -23,7 +23,7 @@ export default class CartPage extends LightningElement {
 
         handleCheckout() {
             // כאן אפשר להחליף לניווט אמיתי או שליחת אירוע
-            alert('עוברים לתשלום...');
+        
             this.showModal = true;
             // this.dispatchEvent(new CustomEvent('checkout'));
         }
