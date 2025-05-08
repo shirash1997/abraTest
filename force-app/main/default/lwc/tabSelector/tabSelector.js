@@ -3,8 +3,16 @@ import { LightningElement, api } from 'lwc';
 export default class TabSelector extends LightningElement {
   @api activeTab;
 
-  getTabClass(tab) {
-    return this.activeTab === tab ? 'tab-button active' : 'tab-button';
+  get eveningTabClass() {
+    return this.activeTab === 'evening' ? 'tab-button active' : 'tab-button';
+  }
+
+  get dessertTabClass() {
+    return this.activeTab === 'dessert' ? 'tab-button active' : 'tab-button';
+  }
+
+  get wineTabClass() {
+    return this.activeTab === 'wine' ? 'tab-button active' : 'tab-button';
   }
 
   handleClickEvening() {

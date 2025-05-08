@@ -4,18 +4,19 @@
   
       <input type="text" class="name-input" placeholder="הכנס שם מזמין" value={customerName} oninput={handleNameChange} />
   
-      <!-- <c-tab-selector active-tab={activeTab} ontabchange={handleTabChange}></c-tab-selector>
+      <c-tab-selector active-tab={activeTab} ontabchange={handleTabChange}></c-tab-selector>
   
       <c-menu-section
-        tab={activeTab}
-        onadditem={handleAddItem}
-      ></c-menu-section>
+      tab={activeTab}
+      customer-name={customerName}
+      onrequestsubmit={handleRequestSubmit}>
+    </c-menu-section>
   
       <c-order-summary
         orders={orders}
         current-customer-name={customerName}
         onreset={handleResetOrders}
-      ></c-order-summary> -->
+      ></c-order-summary>
     </div>
   </template>
   

@@ -1,0 +1,34 @@
+<template>
+    <template if:true={hasOrders}>
+      <div class="order-summary">
+        <h2 class="summary-title">סיכום הזמנות</h2>
+  
+        <table class="order-table">
+          <thead>
+            <tr>
+              <th>שם</th>
+              <th>מנה</th>
+              <th>מחיר</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template for:each={orders} for:item="item">
+              <tr key={item.id}>
+                <td>{item.name}</td>
+                <td>{item.dish}</td>
+                <td>₪{item.price}</td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+  
+        <div class="totals">
+          <p><strong>סה״כ שלך:</strong> ₪{personalTotal}</p>
+          <p><strong>סה״כ כל ההזמנות:</strong> ₪{totalAll}</p>
+        </div>
+  
+        <button class="reset-button" onclick={handleReset}>איפוס הזמנות</button>
+      </div>
+    </template>
+  </template>
+  

@@ -1,0 +1,28 @@
+<template>
+    <div class="menu-section">
+      <h2 class="section-title">בחר מנות מתוך: {tabName}</h2>
+  
+      <template for:each={menuOptions} for:item="item">
+        <div key={item.label} class="menu-item">
+          <span class="menu-label">{item.label}</span>
+          <span class="menu-price">₪{item.price}</span>
+          <button class="menu-add" data-label={item.label} onclick={handleAdd}>הוסף</button>
+        </div>
+      </template>
+  
+      <template if:true={selectedItems.length}>
+        <h3 class="sub-title">מנות שנבחרו:</h3>
+        <ul class="selected-list">
+          <template for:each={selectedItems} for:item="i">
+            <li key={i.id}>
+              {i.label} – ₪{i.price}
+              <button data-id={i.id} onclick={handleRemove}>X</button>
+            </li>
+          </template>
+        </ul>
+  
+        <button class="submit-button" onclick={handleSubmit}>סיים את ההזמנה</button>
+      </template>
+    </div>
+  </template>
+  
