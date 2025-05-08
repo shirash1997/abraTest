@@ -1,5 +1,6 @@
 import { LightningElement, track } from 'lwc';
-import StylesOrderGrooup from '@salesforce/resourceUrl/StylesOrderGrooup';
+import StylesOrderGroup from '@salesforce/resourceUrl/StylesOrderGroup';
+import { loadStyle } from 'lightning/platformResourceLoader';
 
 export default class GroupOrderPage extends LightningElement {
   @track customerName = '';
@@ -7,7 +8,8 @@ export default class GroupOrderPage extends LightningElement {
   @track orders = [];
 
   connectedCallback(){
-    loadStyle(this, StylesOrderGrooup);
+    loadStyle(this, StylesOrderGroup);
+    console.log(StylesOrderGroup);
     
 }
   handleNameChange(event) {
