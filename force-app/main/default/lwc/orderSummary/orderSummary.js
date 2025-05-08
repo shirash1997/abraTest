@@ -1,4 +1,5 @@
 import { LightningElement, api } from 'lwc';
+import resetOrders from '@salesforce/apex/GroupOrderController.resetOrders';
 
 export default class OrderSummary extends LightningElement {
   @api orders = [];
@@ -18,7 +19,16 @@ export default class OrderSummary extends LightningElement {
     return this.orders.length > 0;
   }
 
-  handleReset() {
-    this.dispatchEvent(new CustomEvent('reset'));
+  handleResetOrders() {
+    resetOrders()
+      .then(() => {
+        this.orders = [];
+        alert('כל ההזמנות נמחקו בהצלחה');
+      })
+      .catch(error => {
+        console.error('שגיאה באיפוס ההזמנות:', error);
+        alert('אירעה שגיאה בעת מחיקת ההזמנות');
+      });
   }
+  
 }
