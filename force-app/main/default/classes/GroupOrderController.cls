@@ -1,28 +1,38 @@
-global without sharing class GroupOrderController {
+public without sharing class GroupOrderController {
+
+    @AuraEnabled(cacheable=true)
+    public static List<GroupOrder__c> getOrders() {
+        return [
+            SELECT Id, Name, Dish__c, Price__c, CreatedDate
+            FROM GroupOrder__c
+            ORDER BY CreatedDate ASC
+        ];
+    }
 
     @AuraEnabled
-    public static void saveOrders(String name, String itemsJson) {
-        if (String.isBlank(name) || String.isBlank(itemsJson)) {
-            throw new AuraHandledException('שם ופריטים נדרשים');
+    public static void saveOrders(String name, List<Map<String, Object>> items) {
+        if (String.isBlank(name) || items == null || items.isEmpty()) {
+            throw new AuraHandledException('נא להזין שם ולבחור מנות להזמנה.');
         }
 
-        List<GroupOrder__c> newOrders = new List<GroupOrder__c>();
+        System.debug('>>> קיבלנו שם: ' + name);
+        System.debug('>>> פריטים: ' + items);
 
-        // parse JSON manually
-        List<Object> rawItems = (List<Object>) JSON.deserializeUntyped(itemsJson);
+        List<GroupOrder__c> ordersToInsert = new List<GroupOrder__c>();
 
-        for (Object o : rawItems) {
-            Map<String, Object> item = (Map<String, Object>) o;
+        for (Map<String, Object> item : items) {
             String dish = (String)item.get('dish');
-            Decimal price = Decimal.valueOf(String.valueOf(item.get('price')));
+            Integer price = Integer.valueOf(String.valueOf(item.get('price')));
 
-            newOrders.add(new GroupOrder__c(
+            GroupOrder__c order = new GroupOrder__c(
                 Name = name,
                 Dish__c = dish,
                 Price__c = price
-            ));
+            );
+
+            ordersToInsert.add(order);
         }
 
-        insert newOrders;
+        insert ordersToInsert;
     }
 }

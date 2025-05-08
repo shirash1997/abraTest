@@ -15,21 +15,21 @@ export default class GroupOrderPage extends LightningElement {
     // this.fetchOrders(); // שליפת כל ההזמנות עם עליית הקומפוננטה
   }
 
-  fetchOrders() {
-    getOrders()
-      .then(data => {
-        this.orders = data.map(o => ({
-          id: o.Id,
-          name: o.Name,
-          dish: o.Dish__c,
-          price: o.Price__c
-        }));
-      })
-      .catch(error => {
-        console.error('שגיאה בשליפת ההזמנות:', error);
-        alert('אירעה שגיאה בעת שליפת ההזמנות');
-      });
-  }
+  // fetchOrders() {
+  //   getOrders()
+  //     .then(data => {
+  //       this.orders = data.map(o => ({
+  //         id: o.Id,
+  //         name: o.Name,
+  //         dish: o.Dish__c,
+  //         price: o.Price__c
+  //       }));
+  //     })
+  //     .catch(error => {
+  //       console.error('שגיאה בשליפת ההזמנות:', error);
+  //       alert('אירעה שגיאה בעת שליפת ההזמנות');
+  //     });
+  // }
 
   handleNameChange(event) {
     this.customerName = event.target.value;
@@ -39,7 +39,7 @@ export default class GroupOrderPage extends LightningElement {
     this.activeTab = event.detail;
   }
 
-  async handleRequestSubmit(event) {
+   handleRequestSubmit(event) {
     const items = event.detail;
 
     if (!this.customerName || this.customerName.trim() === '') {
@@ -59,15 +59,12 @@ export default class GroupOrderPage extends LightningElement {
 
     console.log('הזמנה נשלחת:', JSON.stringify(payload));
 
-    try {
-      await saveOrders(this.customerName, payload);
-      console.log('✅ ההזמנה נשמרה בהצלחה');
-    //   this.fetchOrders(); // רענון ההזמנות לאחר שליחה
-    } catch (error) {
-      console.error('❌ שגיאה בשמירת ההזמנה:', error);
-      alert('אירעה שגיאה בשמירת ההזמנה, נסו שוב מאוחר יותר');
-    }
-  }
+
+       saveOrders({name: this.customerName, items:payload}).then(() => { console.log('✅ ההזמנה נשמרה בהצלחה');
+ } )};
+   
+    
+  
 
   handleResetOrders() {
     this.orders = [];
