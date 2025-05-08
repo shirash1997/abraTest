@@ -15,6 +15,20 @@ export default class OrderSummary extends LightningElement {
       .reduce((sum, item) => sum + item.price, 0);
   }
 
+  get groupedOrders() {
+    const map = {};
+    this.orders.forEach(order => {
+      if (!map[order.name]) {
+        map[order.name] = {
+          name: order.name,
+          total: 0
+        };
+      }
+      map[order.name].total += order.price;
+    });
+    return Object.values(map);
+  }
+
   get hasOrders() {
     return this.orders.length > 0;
   }
@@ -30,5 +44,4 @@ export default class OrderSummary extends LightningElement {
         alert('אירעה שגיאה בעת מחיקת ההזמנות');
       });
   }
-  
 }
