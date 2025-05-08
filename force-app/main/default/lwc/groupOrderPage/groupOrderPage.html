@@ -1,22 +1,42 @@
 <template>
-    <div class="wrapper" dir="rtl">
-      <h1 class="title">הזמנה קבוצתית</h1>
-  
-      <input type="text" class="name-input" placeholder="הכנס שם מזמין" value={customerName} oninput={handleNameChange} />
-  
+  <div class="wrapper" dir="rtl">
+    <h1 class="title">הזמנה קבוצתית</h1>
+
+    <template if:false={showSummaryOnly}>
+      <input
+        type="text"
+        class="name-input"
+        placeholder="הכנס שם מזמין"
+        value={customerName}
+        oninput={handleNameChange}
+      />
+
+      <template if:true={orders.length}>
+        <div class="summary-button-wrapper">
+          <button onclick={scrollToSummary}>מעבר לסיכום ההזמנה</button>
+        </div>
+      </template>
+
       <c-tab-selector active-tab={activeTab} ontabchange={handleTabChange}></c-tab-selector>
-  
+
       <c-menu-section
-      tab={activeTab}
-      customer-name={customerName}
-      onrequestsubmit={handleRequestSubmit}>
-    </c-menu-section>
-    
+        tab={activeTab}
+        customer-name={customerName}
+        onrequestsubmit={handleRequestSubmit}
+      ></c-menu-section>
+    </template>
+
+    <template if:true={showSummaryOnly}>
+      <div class="back-button-wrapper">
+        <button onclick={backToMenu}>⬅ חזרה לתפריט</button>
+      </div>
+    </template>
+
     <c-order-summary
+      if:true={showSummaryOnly}
       orders={orders}
       current-customer-name={customerName}
-      onreset={handleResetOrders}>
-    </c-order-summary>
-    </div>
-  </template>
-  
+      onreset={handleResetOrders}
+    ></c-order-summary>
+  </div>
+</template>

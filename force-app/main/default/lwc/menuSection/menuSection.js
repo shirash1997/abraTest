@@ -214,19 +214,56 @@ export default class MenuSection extends LightningElement {
   
   ];
 
-  get menuOptions() {
-    switch (this.tab) {
-      case 'evening': return this.eveningMenu;
-      case 'dessert': return this.dessertMenu;
-      case 'wine': return this.wineMenu;
-      default: return [];
+  get menuCategories() {
+    if (this.tab === 'evening') {
+      return Object.entries(this.eveningMenu); // [['starters', [...]], ['breads', [...]], ...]
     }
+    // קינוחים ויין נשארים שטוחים
+    return [['default', this.tab === 'dessert' ? this.dessertMenu : this.wineMenu]];
   }
+  get processedMenu() {
+    // אם זה תפריט ערב, נחלק לקטגוריות
+    if (this.tab === 'evening') {
+      return Object.entries(this.eveningMenu).map(([key, items]) => ({
+        key,
+        label: this.getCategoryLabel(key),
+        items
+      }));
+    }
+  
+    // אחרת - קינוחים או יין - בלי חלוקה
+    const label = this.tab === 'dessert' ? 'קינוחים' : 'יינות';
+    return [{
+      key: 'default',
+      label,
+      items: this.tab === 'dessert' ? this.dessertMenu : this.wineMenu
+    }];
+  }
+  
+  getCategoryLabel(key) {
+    const labels = {
+      starters: 'ראשונות',
+      breads: 'לחמים',
+      salads: 'סלטים',
+      grill: 'מהגריל',
+      sandwiches: 'כריכים',
+      dishs: 'עיקריות',
+      pasta: 'פסטות',
+      hamburgers: 'המבורגרים',
+      sideDishes: 'תוספות',
+      drinkMenu: 'שתייה',
+      default: ''
+    };
+    return labels[key] || key;
+  }
+  
 
   handleAdd(event) {
     const label = event.target.dataset.label;
-    const menu = this.menuOptions;
-    const item = menu.find(m => m.label === label);
+  
+    // איחוד כל המנות מכל הקטגוריות
+    const allItems = this.processedMenu.flatMap(category => category.items);
+    const item = allItems.find(i => i.label === label);
   
     if (item) {
       this.selectedItems = [
@@ -237,6 +274,17 @@ export default class MenuSection extends LightningElement {
           price: item.price
         }
       ];
+    }
+  }
+
+  get totalPrice() {
+    return this.selectedItems.reduce((sum, i) => sum + (i.price || 0), 0);
+  }
+  
+  scrollToBottom() {
+    const summaryEl = this.template.querySelector('.submit-button');
+    if (summaryEl) {
+      summaryEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }
   
