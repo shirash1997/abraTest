@@ -5,17 +5,20 @@
                 <span class="close-btn" onclick={closeModal}>×</span>
                 <h3>המשך לתשלום</h3>
                 <form class="reservation-form" onsubmit={handleSubmit}>
-                    <label>שיטת אספקה:</label>
-                    <div class="radio-group">
-                        <label>
-                            <input type="radio" name="deliveryType" value="pickup" checked onchange={handleDeliveryChange} />
-                            איסוף עצמי
-                        </label>
-                        <label>
-                            <input type="radio" name="deliveryType" value="delivery" onchange={handleDeliveryChange} />
-                            משלוח
-                        </label>
+                    <div class="radio-section">
+                        <label class="radio-label-title">שיטת אספקה:</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="deliveryType" value="pickup" checked onchange={handleDeliveryChange} />
+                                איסוף עצמי
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="deliveryType" value="delivery" onchange={handleDeliveryChange} />
+                                משלוח
+                            </label>
+                        </div>
                     </div>
+                    
                 
                     <input type="text" placeholder="שם מלא" name="fullName" required />
                     <input type="email" placeholder="אימייל" name="email" required />

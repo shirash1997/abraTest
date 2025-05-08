@@ -1,8 +1,8 @@
 public without sharing class CartCheckoutController  {
 
     @AuraEnabled
-    public static Id  processGuestCheckout(String name, String email, String phone, Integer totalPrice,  List<Map<String, Object>> cartItems) {
-        if (String.isBlank(name) || String.isBlank(email) || cartItems == null || cartItems.isEmpty()) {
+    public static Id processGuestCheckout(String name, String email, String phone, String address, String deliveryType, Integer totalPrice, List<Map<String, Object>> cartItems){
+            if (String.isBlank(name) || String.isBlank(email) || cartItems == null || cartItems.isEmpty()) {
             throw new AuraHandledException('נא למלא את כל הפרטים ולבחור מוצרים לעגלה.');
         }
 
@@ -16,22 +16,25 @@ public without sharing class CartCheckoutController  {
         // יצירת חשבון מסוג Person Account
         Account acc = new Account(
             RecordTypeId = personAccountRecordTypeId,
-            LastName = name, // חובה ב-Person Account
+            LastName = name,
             Phone = phone,
-            PersonEmail = email
-          
+            PersonEmail = email,
+            BillingStreet = deliveryType == 'delivery' ? address : null
         );
         insert acc;
 
       
         // חישוב סכום כולל
-     
+        String deliveryTypeLabel = (deliveryType == 'delivery') ? 'משלוח' : 'איסוף עצמי';
+
         // יצירת הזמנה (Order__c)
         Order__c order = new Order__c(
             Name = 'הזמנה מ-' + name,
             Account__c = acc.Id,
             Date__c = Date.today(),
-            Total_Price__c = totalPrice
+            Total_Price__c = totalPrice,
+            Delivery_Type__c = deliveryTypeLabel
+           
         );
         insert order;
 system.debug('cart in apex:' + cartItems);

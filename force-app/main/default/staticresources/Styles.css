@@ -928,6 +928,43 @@ h3{
   .reservation-form > *:last-child {
     margin-bottom: 0; /* ביטול רווח תחתון לכפתור */
   }
+
+  .radio-section {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    direction: rtl;
+    font-family: "Amatic SC", sans-serif;
+}
+
+.radio-label-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #263056;
+    font-weight: bold;
+}
+
+.radio-group {
+    display: flex;
+    flex-wrap: wrap; /* חשוב למובייל */
+    gap: 24px; /* יותר רווח בין האפשרויות */
+    font-size: 1.2rem;
+    color: #263056;
+}
+
+.radio-option {
+    display: flex;
+    flex-direction: row; /* טקסט ליד כפתור */
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap; /* שומר את הטקסט בשורה אחת */
+    cursor: pointer;
+}
+
+input[type="tel"] {
+    direction: rtl;
+}
   
 
 @media screen and (min-width: 768px) {
