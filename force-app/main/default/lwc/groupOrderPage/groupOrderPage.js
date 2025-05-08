@@ -49,26 +49,54 @@ export default class GroupOrderPage extends LightningElement {
 
   handleRequestSubmit(event) {
     const items = event.detail;
+  
     if (!this.customerName || this.customerName.trim() === '') {
       alert('יש להזין שם לפני שליחת ההזמנה');
       return;
     }
+  
     if (!items.length) {
       alert('יש לבחור לפחות מנה אחת להזמנה');
       return;
     }
-
+  
     const payload = items.map(i => ({
       dish: i.label,
       price: i.price
     }));
-
-    saveOrders({ name: this.customerName, items: payload }).then(() => {
-      console.log('✅ ההזמנה נשמרה בהצלחה');
-      this.fetchOrders();
-      this.showSummaryOnly = true;
-    });
+  
+    console.log('הזמנה נשלחת:', JSON.stringify(payload));
+  
+    saveOrders({ name: this.customerName, items: payload })
+      .then(() => {
+        console.log('✅ ההזמנה נשמרה בהצלחה');
+  
+        // הוספה ישירה ל־orders במקום לחכות ל־fetchOrders
+        const newOrders = payload.map(i => ({
+          id: Date.now() + Math.random(),
+          name: this.customerName,
+          dish: i.dish,
+          price: i.price
+        }));
+        this.orders = [...this.orders, ...newOrders];
+  
+        // גלילה לסיכום
+        setTimeout(() => {
+          const summary = this.template.querySelector('c-order-summary');
+          if (summary) {
+            const el = summary.template.querySelector('#orderSummary');
+            if (el) {
+              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        }, 300);
+      })
+      .catch(error => {
+        console.error('שגיאה בשמירה:', error);
+        alert('אירעה שגיאה בשמירת ההזמנה');
+      });
   }
+  
 
   handleResetOrders() {
     this.orders = [];

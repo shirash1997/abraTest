@@ -3,7 +3,7 @@ import { LightningElement, api, track } from 'lwc';
 export default class MenuSection extends LightningElement {
   @api tab; // 'evening' | 'dessert' | 'wine'
   @track selectedItems = [];
-
+  manualPrices = {};
   // כל המנות בתוך הקומפוננטה
   eveningMenu = {
     starters: [
@@ -256,7 +256,36 @@ export default class MenuSection extends LightningElement {
     };
     return labels[key] || key;
   }
+
+
+  handlePriceInput(event) {
+    const label = event.target.dataset.label;
+    const value = parseFloat(event.target.value);
+    if (!isNaN(value)) {
+      this.manualPrices[label] = value;
+    }
+  }
+
+
   
+handleAddWithManualPrice(event) {
+  const label = event.target.dataset.label;
+  const price = this.manualPrices[label];
+
+  if (!price) {
+    alert('יש להזין מחיר תקין למנה זו');
+    return;
+  }
+
+  this.selectedItems = [
+    ...this.selectedItems,
+    {
+      id: Date.now() + Math.random(),
+      label,
+      price
+    }
+  ];
+}
 
   handleAdd(event) {
     const label = event.target.dataset.label;

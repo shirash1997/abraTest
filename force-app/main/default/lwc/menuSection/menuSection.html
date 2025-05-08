@@ -26,8 +26,14 @@
         <template for:each={category.items} for:item="item">
           <div key={item.label} class="menu-item">
             <span class="menu-label">{item.label}</span>
-            <span class="menu-price">₪{item.price}</span>
-            <button class="menu-add" data-label={item.label} onclick={handleAdd}>הוסף</button>
+            <template if:true={item.price}>
+              <span class="menu-price">₪{item.price}</span>
+              <button class="menu-add" data-label={item.label} onclick={handleAdd}>הוסף</button>
+            </template>
+            <template if:false={item.price}>
+              <input type="number" placeholder="₪ מחיר" class="manual-price-input" data-label={item.label} oninput={handlePriceInput} />
+              <button class="menu-add" data-label={item.label} onclick={handleAddWithManualPrice}>הוסף</button>
+            </template>
           </div>
         </template>
       </div>

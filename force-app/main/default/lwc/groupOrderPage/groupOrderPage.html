@@ -11,11 +11,11 @@
         oninput={handleNameChange}
       />
 
-      <template if:true={orders.length}>
+   
         <div class="summary-button-wrapper">
           <button onclick={scrollToSummary}>מעבר לסיכום ההזמנה</button>
         </div>
-      </template>
+
 
       <c-tab-selector active-tab={activeTab} ontabchange={handleTabChange}></c-tab-selector>
 

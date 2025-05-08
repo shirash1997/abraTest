@@ -302,6 +302,26 @@
   border-radius: 8px;
 }
 
+.manual-price-input {
+  width: 80px;
+  padding: 6px 10px;
+  font-size: 1rem;
+  font-family: 'Varela Round', sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fdfaf4; /* גוון רך שמשתלב עם antique white */
+  color: #333;
+  text-align: center;
+  direction: rtl;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  transition: border-color 0.3s;
+}
+
+.manual-price-input:focus {
+  border-color: #6c5ce7;
+  outline: none;
+}
+
 
 @media (min-width: 768px) {
   .wrapper {
