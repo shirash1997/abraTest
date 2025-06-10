@@ -5,11 +5,9 @@
     <c-field-selector onfieldselected={handleFieldSelected} onclose={closeModal}></c-field-selector>
   </template>
 
-  <!-- <div class="slds-p-around_medium">
-    <lightning-datatable
-      key-field="Id"
-      data={records}
-      columns={columns}>
-    </lightning-datatable> -->
-  </div>
+  <lightning-datatable
+    key-field="Id"
+    data={records}
+    columns={columns}>
+  </lightning-datatable>
 </template>

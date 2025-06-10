@@ -3,7 +3,7 @@ import { LightningElement, track } from 'lwc';
 export default class SmartListView extends LightningElement {
   @track isModalOpen = false;
   @track columns = [];
-  @track records = []; // בהמשך: נשלוף דינאמית מ-Apex
+  @track records = [];
 
   openModal() {
     this.isModalOpen = true;
@@ -20,6 +20,13 @@ export default class SmartListView extends LightningElement {
       fieldName: f.apiName,
       type: 'text'
     }));
+
+    // TODO: fetch records from Apex using selected fields
+    this.records = [
+      { Id: '001', Name: 'Opportunity A', StageName: 'Prospecting' },
+      { Id: '002', Name: 'Opportunity B', StageName: 'Closed Won' }
+    ];
+
     this.isModalOpen = false;
   }
 }
