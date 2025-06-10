@@ -1,0 +1,15 @@
+<template>
+  <lightning-button icon-name="utility:add" label="Add Column" onclick={openModal}></lightning-button>
+
+  <template if:true={isModalOpen}>
+    <c-field-selector onfieldselected={handleFieldSelected} onclose={closeModal}></c-field-selector>
+  </template>
+
+  <!-- <div class="slds-p-around_medium">
+    <lightning-datatable
+      key-field="Id"
+      data={records}
+      columns={columns}>
+    </lightning-datatable> -->
+  </div>
+</template>
