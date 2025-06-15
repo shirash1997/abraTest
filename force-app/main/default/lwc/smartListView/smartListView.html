@@ -1,13 +1,35 @@
 <template>
-  <lightning-button icon-name="utility:add" label="Add Column" onclick={openModal}></lightning-button>
+  <lightning-card title="Smart List View">
+    <div class="slds-p-around_medium">
+      <!-- אובייקט לבחירה -->
+      <lightning-combobox
+        label="בחר אובייקט"
+        value={selectedObject}
+        options={objectOptions}
+        onchange={handleObjectChange}>
+      </lightning-combobox>
 
-  <template if:true={isModalOpen}>
-    <c-field-selector onfieldselected={handleFieldSelected} onclose={closeModal}></c-field-selector>
-  </template>
+      <!-- בחירת שדות -->
+      <template if:true={fieldOptions}>
+        <lightning-dual-listbox
+          name="fields"
+          label="בחר שדות להצגה"
+          source-label="שדות זמינים"
+          selected-label="שדות מוצגים"
+          options={fieldOptions}
+          value={selectedFields}
+          onchange={handleFieldSelection}>
+        </lightning-dual-listbox>
+      </template>
 
-  <lightning-datatable
-    key-field="Id"
-    data={records}
-    columns={columns}>
-  </lightning-datatable>
+      <!-- טבלת נתונים -->
+      <template if:true={records}>
+        <lightning-datatable
+          key-field="Id"
+          data={records}
+          columns={columns}>
+        </lightning-datatable>
+      </template>
+    </div>
+  </lightning-card>
 </template>

@@ -1,32 +1,44 @@
 import { LightningElement, track } from 'lwc';
+import getSObjects from '@salesforce/apex/SmartListViewController.getSObjects';
+import getFields from '@salesforce/apex/SmartListViewController.getFields';
+import getRecords from '@salesforce/apex/SmartListViewController.getRecords';
 
 export default class SmartListView extends LightningElement {
-  @track isModalOpen = false;
+  @track objectOptions = [];
+  @track selectedObject = '';
+  @track fieldOptions = [];
+  @track selectedFields = [];
   @track columns = [];
   @track records = [];
 
-  openModal() {
-    this.isModalOpen = true;
+  connectedCallback() {
+    getSObjects().then(data => {
+      this.objectOptions = data.map(obj => ({
+        label: obj,
+        value: objַ
+      }));
+    });
   }
 
-  closeModal() {
-    this.isModalOpen = false;
+  handleObjectChange(event) {
+    this.selectedObject = event.detail.value;
+    this.selectedFields = [];
+    this.records = [];
+
+    getFields({ objectName: this.selectedObject }).then(fields => {
+      this.fieldOptions = fields.map(f => ({ label: f, value: f }));
+    });
   }
 
-  handleFieldSelected(event) {
-    const selectedFields = event.detail; // Array of fields
-    this.columns = selectedFields.map(f => ({
-      label: f.label,
-      fieldName: f.apiName,
-      type: 'text'
+  handleFieldSelection(event) {
+    this.selectedFields = event.detail.value;
+    this.columns = this.selectedFields.map(field => ({
+      label: field,
+      fieldName: field
     }));
 
-    // TODO: fetch records from Apex using selected fields
-    this.records = [
-      { Id: '001', Name: 'Opportunity A', StageName: 'Prospecting' },
-      { Id: '002', Name: 'Opportunity B', StageName: 'Closed Won' }
-    ];
-
-    this.isModalOpen = false;
+    getRecords({ objectName: this.selectedObject, fields: this.selectedFields }).then(data => {
+      this.records = data;
+    });
   }
 }
