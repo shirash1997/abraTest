@@ -6,8 +6,9 @@ import getRecords from '@salesforce/apex/SmartListViewController.getRecords';
 export default class SmartListView extends LightningElement {
   @track objectOptions = [];
   @track selectedObject = '';
-  @track displayFields = [];
-  @track selectedFields = [];
+  @track rawFields = [];            // תוצאת Apex מקורית
+  @track preparedFields = [];       // שדות לעבודה ב־HTML
+  @track selectedFields = [];       // שדות שנבחרו בפועל
   @track columns = [];
   @track records = [];
   @track isModalOpen = false;
@@ -31,16 +32,39 @@ export default class SmartListView extends LightningElement {
   }
 
   openFieldModal() {
-    getFieldsWithParents({ objectName: this.selectedObject }).then(fields => {
-      this.displayFields = fields;
-      this.isModalOpen = true;
-    }).catch(error => {
-      console.error('שגיאה בטעינת שדות:', error);
-    });
+    getFieldsWithParents({ objectName: this.selectedObject })
+      .then(fields => {
+        this.rawFields = fields;
+        this.buildPreparedFields();
+        this.isModalOpen = true;
+      }).catch(error => {
+        console.error('שגיאה בטעינת שדות:', error);
+      });
   }
 
-  closeModal() {
-    this.isModalOpen = false;
+  buildPreparedFields() {
+    let flatFields = [];
+
+    this.rawFields.forEach(field => {
+      flatFields.push({
+        label: field.label,
+        fullValue: field.value,
+        checked: this.selectedFields.includes(field.value)
+      });
+
+      if (field.isReference && field.childFields) {
+        field.childFields.forEach(child => {
+          const full = `${field.value}.${child.value}`;
+          flatFields.push({
+            label: `↳ ${child.label}`,
+            fullValue: full,
+            checked: this.selectedFields.includes(full)
+          });
+        });
+      }
+    });
+
+    this.preparedFields = flatFields;
   }
 
   handleToggleField(event) {
@@ -52,6 +76,13 @@ export default class SmartListView extends LightningElement {
     } else {
       this.selectedFields = this.selectedFields.filter(f => f !== field);
     }
+
+    // עדכון הבידוי (checkbox) של הרשימה
+    this.buildPreparedFields();
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
   }
 
   applySelectedFields() {
@@ -59,6 +90,7 @@ export default class SmartListView extends LightningElement {
       label: f,
       fieldName: f
     }));
+
     getRecords({
       objectName: this.selectedObject,
       fields: this.selectedFields
