@@ -1,7 +1,7 @@
 <template>
   <lightning-card title="Smart List View">
     <div class="slds-p-around_medium">
-      <!-- אובייקט לבחירה -->
+      <!-- בחירת אובייקט -->
       <lightning-combobox
         label="בחר אובייקט"
         value={selectedObject}
@@ -9,17 +9,14 @@
         onchange={handleObjectChange}>
       </lightning-combobox>
 
-      <!-- בחירת שדות -->
-      <template if:true={fieldOptions}>
-        <lightning-dual-listbox
-          name="fields"
-          label="בחר שדות להצגה"
-          source-label="שדות זמינים"
-          selected-label="שדות מוצגים"
-          options={fieldOptions}
-          value={selectedFields}
-          onchange={handleFieldSelection}>
-        </lightning-dual-listbox>
+      <!-- כפתור להוספת שדות -->
+      <template if:true={selectedObject}>
+        <lightning-button
+          label="הוסף שדות"
+          icon-name="utility:add"
+          class="slds-m-top_medium"
+          onclick={openFieldModal}>
+        </lightning-button>
       </template>
 
       <!-- טבלת נתונים -->
@@ -32,4 +29,48 @@
       </template>
     </div>
   </lightning-card>
+
+  <!-- מודל בחירת שדות -->
+  <template if:true={isModalOpen}>
+    <section role="dialog" class="slds-modal slds-fade-in-open">
+      <div class="slds-modal__container">
+        <header class="slds-modal__header">
+          <h2 class="slds-text-heading_medium">בחר שדות</h2>
+        </header>
+        <div class="slds-modal__content slds-p-around_medium">
+          <template for:each={displayFields} for:item="field">
+            <div key={field.value}>
+              <lightning-input
+                type="checkbox"
+                label={field.label}
+                data-id={field.value}
+                checked={selectedFields.includes(field.value)}
+                onchange={handleToggleField}>
+              </lightning-input>
+
+              <!-- הצגת שדות של Parent -->
+              <template if:true={field.childFields}>
+                <div class="slds-m-left_medium">
+                  <template for:each={field.childFields} for:item="child">
+                    <lightning-input
+                      type="checkbox"
+                      label={'↳ ' + child.label}
+                      data-id={field.value + '.' + child.value}
+                      checked={selectedFields.includes(field.value + '.' + child.value)}
+                      onchange={handleToggleField}>
+                    </lightning-input>
+                  </template>
+                </div>
+              </template>
+            </div>
+          </template>
+        </div>
+        <footer class="slds-modal__footer">
+          <lightning-button label="ביטול" onclick={closeModal}></lightning-button>
+          <lightning-button variant="brand" label="אישור" onclick={applySelectedFields}></lightning-button>
+        </footer>
+      </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+  </template>
 </template>

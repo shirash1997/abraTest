@@ -1,22 +1,25 @@
 import { LightningElement, track } from 'lwc';
 import getSObjects from '@salesforce/apex/SmartListViewController.getSObjects';
-import getFields from '@salesforce/apex/SmartListViewController.getFields';
+import getFieldsWithParents from '@salesforce/apex/SmartListViewController.getFieldsWithParents';
 import getRecords from '@salesforce/apex/SmartListViewController.getRecords';
 
 export default class SmartListView extends LightningElement {
   @track objectOptions = [];
   @track selectedObject = '';
-  @track fieldOptions = [];
+  @track displayFields = [];
   @track selectedFields = [];
   @track columns = [];
   @track records = [];
+  @track isModalOpen = false;
 
   connectedCallback() {
     getSObjects().then(data => {
       this.objectOptions = data.map(obj => ({
         label: obj,
-        value: objַ
+        value: obj
       }));
+    }).catch(error => {
+      console.error('שגיאה בהבאת רשימת האובייקטים:', error);
     });
   }
 
@@ -24,21 +27,46 @@ export default class SmartListView extends LightningElement {
     this.selectedObject = event.detail.value;
     this.selectedFields = [];
     this.records = [];
+    this.columns = [];
+  }
 
-    getFields({ objectName: this.selectedObject }).then(fields => {
-      this.fieldOptions = fields.map(f => ({ label: f, value: f }));
+  openFieldModal() {
+    getFieldsWithParents({ objectName: this.selectedObject }).then(fields => {
+      this.displayFields = fields;
+      this.isModalOpen = true;
+    }).catch(error => {
+      console.error('שגיאה בטעינת שדות:', error);
     });
   }
 
-  handleFieldSelection(event) {
-    this.selectedFields = event.detail.value;
-    this.columns = this.selectedFields.map(field => ({
-      label: field,
-      fieldName: field
-    }));
+  closeModal() {
+    this.isModalOpen = false;
+  }
 
-    getRecords({ objectName: this.selectedObject, fields: this.selectedFields }).then(data => {
+  handleToggleField(event) {
+    const field = event.target.dataset.id;
+    if (event.target.checked) {
+      if (!this.selectedFields.includes(field)) {
+        this.selectedFields.push(field);
+      }
+    } else {
+      this.selectedFields = this.selectedFields.filter(f => f !== field);
+    }
+  }
+
+  applySelectedFields() {
+    this.columns = this.selectedFields.map(f => ({
+      label: f,
+      fieldName: f
+    }));
+    getRecords({
+      objectName: this.selectedObject,
+      fields: this.selectedFields
+    }).then(data => {
       this.records = data;
+      this.isModalOpen = false;
+    }).catch(error => {
+      console.error('שגיאה בטעינת רשומות:', error);
     });
   }
 }
