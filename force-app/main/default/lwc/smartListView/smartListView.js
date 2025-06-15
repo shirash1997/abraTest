@@ -93,20 +93,46 @@ buildPreparedFields() {
     this.isModalOpen = false;
   }
 
-  applySelectedFields() {
-    this.columns = this.selectedFields.map(f => ({
-      label: f,
-      fieldName: f
+applySelectedFields() {
+  const fieldMap = {}; // מיפוי מהשדה המקורי לשם שטוח
+  this.selectedFields.forEach(f => {
+    // החלפה של "." ב־"__" – כדי שזה יעבוד בדאטה־טייבל
+    const flatName = f.replace(/\./g, '__');
+    fieldMap[f] = flatName;
+  });
+
+  getRecords({
+    objectName: this.selectedObject,
+    fields: this.selectedFields
+  }).then(data => {
+    // המרת הנתונים לפורמט שטוח
+    this.records = data.map(row => {
+      let flat = { Id: row.Id };
+      this.selectedFields.forEach(original => {
+        const flatFieldName = fieldMap[original];
+
+        if (original.includes('.')) {
+          const [parent, child] = original.split('.');
+          flat[flatFieldName] = row[parent]?.[child] || null;
+        } else {
+          flat[flatFieldName] = row[original];
+        }
+      });
+      return flat;
+    });
+
+    // הגדרת העמודות בצורה שטוחה
+    this.columns = this.selectedFields.map(original => ({
+      label: original,
+      fieldName: fieldMap[original],
+      type: 'text'
     }));
 
-    getRecords({
-      objectName: this.selectedObject,
-      fields: this.selectedFields
-    }).then(data => {
-      this.records = data;
-      this.isModalOpen = false;
-    }).catch(error => {
-      console.error('שגיאה בטעינת רשומות:', error);
-    });
-  }
+    this.isModalOpen = false;
+  }).catch(error => {
+    console.error('❌ שגיאה בטעינת רשומות:', error);
+  });
+}
+
+
 }
