@@ -38,17 +38,19 @@
           <h2 class="slds-text-heading_medium">בחר שדות</h2>
         </header>
         <div class="slds-modal__content slds-p-around_medium">
-          <template for:each={preparedFields} for:item="field">
-            <div key={field.fullValue}>
-              <lightning-input
-                type="checkbox"
-                label={field.label}
-                data-id={field.fullValue}
-                checked={field.checked}
-                onchange={handleToggleField}>
-              </lightning-input>
-            </div>
-          </template>
+  <template for:each={preparedFields} for:item="field">
+  <div key={field.fullValue} class={field.cssClass}>
+    <lightning-input
+      type="checkbox"
+      label={field.label}
+      data-id={field.fullValue}
+      checked={field.checked}
+      onchange={handleToggleField}>
+    </lightning-input>
+  </div>
+</template>
+
+
         </div>
         <footer class="slds-modal__footer">
           <lightning-button label="ביטול" onclick={closeModal}></lightning-button>

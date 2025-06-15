@@ -42,30 +42,38 @@ export default class SmartListView extends LightningElement {
       });
   }
 
-  buildPreparedFields() {
-    let flatFields = [];
+buildPreparedFields() {
+  let flatFields = [];
 
-    this.rawFields.forEach(field => {
-      flatFields.push({
-        label: field.label,
-        fullValue: field.value,
-        checked: this.selectedFields.includes(field.value)
-      });
+  this.rawFields.forEach(field => {
+    const isParentChecked = this.selectedFields.includes(field.value);
 
-      if (field.isReference && field.childFields) {
-        field.childFields.forEach(child => {
-          const full = `${field.value}.${child.value}`;
-          flatFields.push({
-            label: `↳ ${child.label}`,
-            fullValue: full,
-            checked: this.selectedFields.includes(full)
-          });
-        });
-      }
+    // שדה רגיל או Parent
+    flatFields.push({
+      label: field.label,
+      fullValue: field.value,
+      checked: isParentChecked,
+      cssClass: '', // שדה רגיל – אין הזחה
     });
 
-    this.preparedFields = flatFields;
-  }
+    // שדות Child – רק אם ה־Parent נבחר
+    if (field.isReference && isParentChecked && field.childFields) {
+      field.childFields.forEach(child => {
+        const full = `${field.value}.${child.value}`;
+        flatFields.push({
+          label: `↳ ${child.label}`,
+          fullValue: full,
+          checked: this.selectedFields.includes(full),
+          cssClass: 'slds-m-left_medium' // הזחה שמאלה ל־child
+        });
+      });
+    }
+  });
+
+  this.preparedFields = flatFields;
+}
+
+
 
   handleToggleField(event) {
     const field = event.target.dataset.id;
